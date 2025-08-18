@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sergei Lerner — ERP · Automation · AI</title>
+  <meta name="description" content="Sergei Lerner — ERP & Automation expert transitioning into AI-powered workflows. Priority ERP, n8n/Zapier, SmartThings, Power BI, and practical AI projects." />
+  <meta name="author" content="Sergei Lerner" />
+  <meta property="og:title" content="Sergei Lerner — ERP · Automation · AI" />
+  <meta property="og:description" content="Portfolio & projects: Priority ERP, automations, AI, IoT, and data workflows." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://your-domain.example/" />
+  <meta name="theme-color" content="#0f172a" />
+
+  <style>
+    :root{
+      --bg:#0b1220;
+      --card:#0f172a;
+      --muted:#94a3b8;
+      --text:#e5e7eb;
+      --accent:#60a5fa;
+      --accent2:#22d3ee;
+      --green:#34d399;
+      --shadow: 0 10px 30px rgba(0,0,0,.25);
+      --radius: 16px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:linear-gradient(180deg,#0b1220 0%,#0a0f1c 100%);color:var(--text);font:16px/1.6 system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+    a{color:var(--accent);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .container{max-width:1100px;margin:0 auto;padding:24px}
+    header{position:sticky;top:0;background:rgba(11,18,32,.7);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.06);z-index:10}
+    nav{display:flex;gap:18px;align-items:center;justify-content:space-between}
+    nav .links a{padding:10px 12px;border-radius:10px}
+    nav .links a:hover{background:rgba(255,255,255,.06)}
+    .hero{display:grid;grid-template-columns:1.3fr .7fr;gap:24px;align-items:center;padding:54px 0}
+    .card{background:var(--card);border:1px solid rgba(255,255,255,.06);border-radius:var(--radius);box-shadow:var(--shadow)}
+    .hero .card{padding:28px}
+    h1{font-size:40px;line-height:1.15;margin:0 0 12px}
+    .muted{color:var(--muted)}
+    .pill{display:inline-flex;gap:8px;align-items:center;background:rgba(96,165,250,.15);border:1px solid rgba(96,165,250,.35);color:#dbeafe;padding:6px 10px;border-radius:999px;font-size:13px}
+    .cta{display:flex;gap:12px;margin-top:18px;flex-wrap:wrap}
+    .btn{border:1px solid rgba(255,255,255,.14);padding:10px 14px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));color:var(--text);box-shadow:var(--shadow)}
+    .btn.primary{background:linear-gradient(90deg,var(--accent),var(--accent2));border:none;color:#0b1220;font-weight:700}
+    .badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+    .badge{border:1px solid rgba(255,255,255,.14);padding:6px 10px;border-radius:999px;color:#cbd5e1;background:rgba(255,255,255,.05);font-size:12px}
+    section{margin:36px 0}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .project{padding:18px}
+    .project h3{margin:8px 0 6px}
+    .project p{margin:0}
+    .tag{font-size:12px;color:#a5b4fc}
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .list{padding-left:18px;margin:0}
+    footer{padding:36px 0;border-top:1px solid rgba(255,255,255,.06);margin-top:48px}
+    .kpi{display:flex;gap:20px;flex-wrap:wrap}
+    .kpi .item{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);padding:10px 14px;border-radius:12px}
+    .note{font-size:13px;color:#9ca3af}
+    @media (max-width:950px){
+      .hero{grid-template-columns:1fr}
+      .grid{grid-template-columns:1fr}
+      .two-col{grid-template-columns:1fr}
+    }
+    /* Simple fade-in */
+    .fade{opacity:0;transform:translateY(10px);animation:fade .7s ease forwards}
+    .fade2{animation-delay:.15s}
+    .fade3{animation-delay:.3s}
+    @keyframes fade{to{opacity:1;transform:none}}
+    code{background:#0a1020;border:1px solid rgba(255,255,255,.1);padding:2px 6px;border-radius:6px}
+    
+    /* Form styles */
+    .form-message {
+      font-size: 14px;
+      font-weight: 500;
+    }
+    
+    .form-message.success {
+      background: rgba(52, 211, 153, 0.1);
+      border: 1px solid rgba(52, 211, 153, 0.3);
+      color: #34d399;
+    }
+    
+    .form-message.error {
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      color: #ef4444;
+    }
+    
+    .form-message.info {
+      background: rgba(96, 165, 250, 0.1);
+      border: 1px solid rgba(96, 165, 250, 0.3);
+      color: #60a5fa;
+    }
+    
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: var(--accent) !important;
+      box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.2);
+    }
+    
+    .btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Sergei Lerner",
+    "jobTitle": "ERP & Automation Specialist",
+    "url": "https://your-domain.example",
+    "sameAs": ["https://www.linkedin.com/in/sergei-lerner/"],
+    "knowsAbout": ["Priority ERP","Automation","n8n","Zapier","AI","SmartThings","Power BI"]
+  }
+  </script>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="pill">Sergei Lerner · ERP · Automation · AI</div>
+        <div class="links">
+          <a href="#projects">Projects</a>
+          <a href="#about">About</a>
+          <a href="#blog">Blog</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="card fade">
+        <h1>Building the bridge from <span style="color:#a5b4fc">ERP & Automation</span> to <span style="color:#34d399">AI‑powered workflows</span>.</h1>
+        <p class="muted">13+ years with Priority ERP · custom workflows · pricing logic · API integrations · plus hands‑on automation with n8n/Zapier, SmartThings, and data pipelines. Currently focused on applying LLMs and agents to real business processes.</p>
+        <div class="badges">
+          <span class="badge">Priority ERP (since 2011)</span>
+          <span class="badge">n8n · Zapier</span>
+          <span class="badge">Power BI</span>
+          <span class="badge">Python · SQL</span>
+          <span class="badge">SmartThings · MQTT · Docker</span>
+        </div>
+        <div class="cta">
+          <a class="btn primary" href="#projects">View Projects</a>
+          <a class="btn" href="Sergei_Lerner_CV.pdf">Download CV</a>
+          <a class="btn" href="https://www.linkedin.com/in/sergei-lerner/">LinkedIn</a>
+        </div>
+      </div>
+      <div class="card fade fade2">
+        <div class="kpi">
+          <div class="item"><strong>13+</strong><br/><span class="note">Years with Priority ERP</span></div>
+          <div class="item"><strong>50+</strong><br/><span class="note">Automations shipped</span></div>
+          <div class="item"><strong>7</strong><br/><span class="note">AI/ML & Data certs</span></div>
+        </div>
+        <p class="muted" style="margin-top:12px">Fan of clear processes, small feedback loops, and measurable outcomes.</p>
+      </div>
+    </section>
+
+    <section id="projects" class="fade fade2">
+      <h2>Highlighted Projects</h2>
+      <div class="grid">
+        <article class="card project">
+          <div class="tag">Priority · API · WCF/REST</div>
+          <h3>Priority Web/API Server — Clean install & hardening</h3>
+          <p>Step‑by‑step re‑installation, service recovery, and secure hosting bundle config on Windows Server & IIS. Added monitoring, SSL, and tuned app‑pool recycling.</p>
+        </article>
+        <article class="card project">
+          <div class="tag">Priority × Zapier</div>
+          <h3>Priority ↔ Zapier Integration (Lidorr, 2021)</h3>
+          <p>Connected Priority events to external services via Zapier webhooks. Included pricing rules, customer history, and purchase triggers.</p>
+        </article>
+        <article class="card project">
+          <div class="tag">n8n · Agents</div>
+          <h3>AI‑assisted Automations with n8n</h3>
+          <p>Workflows for item pricing audits, customer‑level insights, and notifications. Integrations with SmartThings and Sonos for real‑world signals.</p>
+        </article>
+        <article class="card project">
+          <div class="tag">IoT · Smart Home</div>
+          <h3>Sonos + SmartThings + GPT</h3>
+          <p>Voice‑aware scenarios: routines that combine sensor data with LLM prompts to trigger adaptive audio and alerts.</p>
+        </article>
+        <article class="card project">
+          <div class="tag">Data · BI</div>
+          <h3>Power BI Dashboards</h3>
+          <p>Operational dashboards for ERP data, including inventory turns, pricing variance, and sales cohorts.</p>
+        </article>
+        <article class="card project">
+          <div class="tag">Prototype</div>
+          <h3>Priority API Emulator (training)</h3>
+          <p>Local practice tool that mimics Priority endpoints for safe dev & learning without production access.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="about" class="fade fade3">
+      <h2>About</h2>
+      <div class="two-col">
+        <div class="card" style="padding:18px">
+          <p>I’m Sergei Lerner, a Priority ERP specialist with continuous hands‑on experience since 2011. I implement workflows, pricing logic, and API integrations — and I’m now focused on bringing AI into these flows to reduce friction and amplify impact.</p>
+          <ul class="list">
+            <li>ERP Implementation · Priority customizations</li>
+            <li>Automations with n8n & Zapier</li>
+            <li>Python & SQL for data prep and APIs</li>
+            <li>Power BI for reporting</li>
+            <li>Smart home & IoT, Docker, VPN</li>
+          </ul>
+        </div>
+        <div class="card" style="padding:18px">
+          <h3>Certificates (selected)</h3>
+          <ul class="list">
+            <li>AI For Everyone — Andrew Ng (Coursera)</li>
+            <li>Introduction to IoT — Cisco Networking Academy</li>
+            <li>Microsoft Power BI — Complete Introduction (Udemy)</li>
+            <li>ChatGPT Prompt Engineering for Developers (Udemy)</li>
+            <li>Intro to n8n & Zapier (completed 2025)</li>
+          </ul>
+          <p class="note">Full list on LinkedIn.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="blog" class="fade fade3">
+      <h2>Blog / Insights</h2>
+      <div class="card" style="padding:18px">
+        <p class="muted">Short posts coming soon. Draft ideas:</p>
+        <ul class="list">
+          <li>“From ERP automations to AI agents — a practical path”</li>
+          <li>“Priority ↔ Zapier: lessons learned”</li>
+          <li>“What I wish I knew before running models locally on a NAS/NUC”</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="contact" class="fade fade3">
+      <h2>Contact</h2>
+      <div class="two-col">
+        <div class="card" style="padding:18px">
+          <p>📧 Email: <a href="mailto:lernersergei@gmail.com">lernersergei@gmail.com</a></p>
+          <p>💼 LinkedIn: <a href="https://www.linkedin.com/in/sergei-lerner/">sergei-lerner</a></p>
+          <p>🐙 GitHub: <a href="https://github.com/Aputze">Aputze</a></p>
+          <p class="note">🚀 Available for projects in ERP integrations, automation, and practical AI workflows.</p>
+          
+          <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.1);">
+            <h4 style="margin: 0 0 12px 0; color: var(--accent);">🤖 AI Career Assistant</h4>
+            <p style="margin: 0 0 16px 0; font-size: 14px; color: var(--muted);">Chat with my AI assistant about my career, skills, and experience!</p>
+            
+            <!-- Gradio Web Component -->
+            <script type="module" src="https://gradio.s3-us-west-2.amazonaws.com/5.41.0/gradio.js"></script>
+            <gradio-app 
+              src="https://aputze-career-conversation.hf.space"
+              style="width: 100%; height: 500px; border-radius: 8px; background: #0a1020; border: 1px solid rgba(255,255,255,.1);">
+            </gradio-app>
+            
+            <p style="margin-top: 12px; font-size: 12px; color: var(--muted);">
+              💡 <a href="https://aputze-career-conversation.hf.space" target="_blank" style="color: var(--accent);">Open in new tab</a> if the chat doesn't load properly.
+            </p>
+          </div>
+        </div>
+        <form id="contactForm" class="card" style="padding:18px" action="https://formspree.io/f/xpwleyez" method="POST">
+          <div id="formMessage" class="form-message" style="display: none; padding: 12px; border-radius: 8px; margin-bottom: 16px;"></div>
+          
+          <label>Name<br/><input required name="name" id="name" style="width:100%;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:#0a1020;color:#e5e7eb;margin-top:4px"/></label><br/><br/>
+          
+          <label>Email<br/><input required name="email" id="email" type="email" style="width:100%;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:#0a1020;color:#e5e7eb;margin-top:4px"/></label><br/><br/>
+          
+          <label>Message<br/><textarea required name="message" id="message" rows="4" style="width:100%;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:#0a1020;color:#e5e7eb;margin-top:4px;resize:vertical"></textarea></label><br/><br/>
+          
+          <button class="btn primary" type="submit" id="submitBtn">
+            <span id="submitText">Send Message</span>
+            <span id="submitSpinner" style="display: none;">Sending...</span>
+          </button>
+          
+          <p class="note" style="margin-top: 12px;">Form submissions are sent directly to my email via Formspree. I'll respond within 24 hours.</p>
+        </form>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <p class="note">© <span id="y"></span> Sergei Lerner. Built fast, accessible, and privacy‑friendly.</p>
+      </div>
+    </footer>
+  </main>
+
+  <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+  
+  <script>
+    // Form handling for Formspree
+    document.getElementById('contactForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      
+      const form = e.target;
+      const submitBtn = document.getElementById('submitBtn');
+      const submitText = document.getElementById('submitText');
+      const submitSpinner = document.getElementById('submitSpinner');
+      const formMessage = document.getElementById('formMessage');
+      
+      // Get form data
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+      
+      // Basic validation
+      if (!name || !email || !message) {
+        showMessage('Please fill in all required fields.', 'error');
+        return;
+      }
+      
+      if (!isValidEmail(email)) {
+        showMessage('Please enter a valid email address.', 'error');
+        return;
+      }
+      
+      // Show loading state
+      submitBtn.disabled = true;
+      submitText.style.display = 'none';
+      submitSpinner.style.display = 'inline';
+      hideMessage();
+      
+      try {
+        // Submit to Formspree
+        const formData = new FormData(form);
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+        
+        if (response.ok) {
+          showMessage('Thank you! Your message has been sent successfully. I\'ll get back to you within 24 hours.', 'success');
+          form.reset();
+        } else {
+          throw new Error('Failed to send message');
+        }
+        
+      } catch (error) {
+        console.error('Formspree error:', error);
+        
+        // Fallback: Try to send using mailto link
+        const mailtoLink = `mailto:lernersergei@gmail.com?subject=Contact from ${encodeURIComponent(name)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
+        
+        showMessage(`There was an issue sending your message. <a href="${mailtoLink}" style="color: inherit; text-decoration: underline;">Click here to send via email</a> instead.`, 'info');
+        
+      } finally {
+        // Reset button state
+        submitBtn.disabled = false;
+        submitText.style.display = 'inline';
+        submitSpinner.style.display = 'none';
+      }
+    });
+    
+    // Helper functions
+    function showMessage(message, type = 'info') {
+      const formMessage = document.getElementById('formMessage');
+      formMessage.innerHTML = message;
+      formMessage.className = `form-message ${type}`;
+      formMessage.style.display = 'block';
+      
+      // Auto-hide success messages after 8 seconds
+      if (type === 'success') {
+        setTimeout(() => hideMessage(), 8000);
+      }
+    }
+    
+    function hideMessage() {
+      const formMessage = document.getElementById('formMessage');
+      formMessage.style.display = 'none';
+    }
+    
+    function isValidEmail(email) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(email);
+    }
+    
+    // Add some interactivity to form fields
+    document.querySelectorAll('#contactForm input, #contactForm textarea').forEach(field => {
+      field.addEventListener('blur', function() {
+        if (this.value.trim()) {
+          this.style.borderColor = 'rgba(52, 211, 153, 0.5)';
+        } else {
+          this.style.borderColor = 'rgba(255, 255, 255, 0.15)';
+        }
+      });
+      
+      field.addEventListener('focus', function() {
+        this.style.borderColor = 'var(--accent)';
+      });
+    });
+  </script>
+</body>
+</html>

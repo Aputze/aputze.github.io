@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Under Construction</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="/web_images/icon.png?v=2">
+  <link rel="shortcut icon" href="/web_images/icon.png?v=2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/web_images/icon.png?v=2">
+  <meta name="theme-color" content="#1e3c72">
+  <link rel="preconnect" href="https://aputze-career-conversation.hf.space" crossorigin>
+  <!-- Page-level CSP. Prefer server headers if available. -->
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; frame-src https://*.hf.space; frame-ancestors 'self'; connect-src 'self' https://*.hf.space">
+  <style>
+    :root { --bg1:#1e3c72; --bg2:#2a5298; }
+    * { box-sizing: border-box; }
+    body {
+      background: linear-gradient(135deg, var(--bg1), var(--bg2));
+      font-family: Arial, sans-serif;
+      color: #fff; margin: 0; min-height: 100vh;
+      display: grid; place-items: center;
+    }
+    .container {
+      background: rgba(0, 0, 0, 0.6);
+      padding: 40px 60px; border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+      max-width: 600px; text-align: center;
+    }
+    h1 { font-size: 2.5em; margin: 0 0 20px; }
+    p { font-size: 1.2em; color: #ddd; margin: 0; }
+    .icon { font-size: 60px; margin-bottom: 20px; }
+
+    /* Popup */
+    .chat-button {
+      position: fixed; bottom: 20px; right: 20px;
+      background: #4CAF50; color: #fff; border: 0;
+      padding: 12px 20px; border-radius: 50px; cursor: pointer;
+      font-size: 16px; box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+    .chat-button:focus-visible, .chat-controls button:focus-visible { outline: 3px solid #ffd166; outline-offset: 2px; }
+
+    .chat-popup {
+      display: none; position: fixed; bottom: 20px; right: 20px;
+      width: min(620px, 44vw); height: min(900px, 90vh);
+      border: 2px solid #2a5298; border-radius: 12px; overflow: hidden;
+      background: #0b1220; z-index: 9999;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+    }
+    .chat-popup.large { width: min(1000px, 78vw); height: min(980px, 92vh); }
+
+    .chat-viewport { width: 100%; height: 100%; position: relative; }
+    .chat-viewport iframe { width: 100%; height: 100%; border: 0; border-radius: 12px; }
+
+    .chat-controls {
+      position: absolute; top: 6px; right: 6px; display: flex; gap: 6px; z-index: 2;
+    }
+    .chat-controls button {
+      background: rgba(0,0,0,0.55); color: #fff; border: 1px solid rgba(255,255,255,0.25);
+      width: 30px; height: 30px; border-radius: 8px; cursor: pointer; font-size: 16px; line-height: 28px;
+    }
+
+    @media (max-width: 768px) {
+      .chat-popup { width: 96vw; height: 92vh; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container" aria-live="polite">
+    <div class="icon">🚧</div>
+    <h1>Website Under Construction</h1>
+    <p>We’re working hard to bring you a better experience.<br> Please check back soon.</p>
+  </div>
+
+  <button class="chat-button" id="chatToggle" aria-controls="chatPopup" aria-expanded="false">💬 Chat</button>
+
+  <div class="chat-popup" id="chatPopup" role="dialog" aria-modal="true" aria-label="Career Conversation chatbot">
+    <div class="chat-controls">
+      <button id="resizeBtn" title="Toggle size" aria-label="Toggle size">▢</button>
+      <button id="closeBtn" title="Close" aria-label="Close">✕</button>
+    </div>
+    <div class="chat-viewport">
+      <iframe
+        class="chat-frame"
+        src="https://aputze-career-conversation.hf.space/?embed=true&__theme=dark"
+        loading="lazy"
+        sandbox="allow-scripts allow-same-origin"
+        referrerpolicy="no-referrer"
+        allow="clipboard-write"
+      ></iframe>
+    </div>
+  </div>
+
+  <script>
+    const popup = document.getElementById('chatPopup');
+    const toggle = document.getElementById('chatToggle');
+    const closeBtn = document.getElementById('closeBtn');
+    const resizeBtn = document.getElementById('resizeBtn');
+
+    function openChat(){ popup.style.display = 'block'; toggle.setAttribute('aria-expanded', 'true'); }
+    function closeChat(){ popup.style.display = 'none';  toggle.setAttribute('aria-expanded', 'false'); }
+
+    toggle.addEventListener('click', () => popup.style.display === 'block' ? closeChat() : openChat());
+    closeBtn.addEventListener('click', closeChat);
+    resizeBtn.addEventListener('click', () => popup.classList.toggle('large'));
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeChat(); });
+  </script>
+</body>
+</html>
