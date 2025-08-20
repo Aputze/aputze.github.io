@@ -1,0 +1,408 @@
+{
+  "meta": {
+    "instanceId": "ai-smart-home-demo-2025"
+  },
+  "name": "AI Smart Home Intelligence Hub",
+  "description": "A clever workflow that uses AI to make smart home decisions based on context, time, and user patterns",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "smart-request",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-trigger",
+      "name": "Smart Request",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [200, 300],
+      "webhookId": "ai-smart-home-intelligence"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Extract context from the request\nconst request = $input.first().json;\nconst now = new Date();\nconst hour = now.getHours();\nconst dayOfWeek = now.getDay();\nconst isWeekend = dayOfWeek === 0 || dayOfWeek === 6;\n\n// Determine time context\nlet timeContext = 'day';\nif (hour < 6) timeContext = 'night';\nelse if (hour < 12) timeContext = 'morning';\nelse if (hour < 18) timeContext = 'afternoon';\nelse if (hour < 22) timeContext = 'evening';\nelse timeContext = 'night';\n\n// Create context object\nconst context = {\n  timestamp: now.toISOString(),\n  time_context: timeContext,\n  hour: hour,\n  is_weekend: isWeekend,\n  user_request: request.request || 'general assistance',\n  location: request.location || 'home',\n  urgency: request.urgency || 'normal',\n  weather_condition: request.weather || 'unknown'\n};\n\nreturn [{ json: context }];"
+      },
+      "id": "context-analyzer",
+      "name": "Context Analyzer",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [400, 300]
+    },
+    {
+      "parameters": {
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "openAiApi",
+        "resource": "chat",
+        "operation": "create",
+        "model": "gpt-4",
+        "messages": {
+          "values": [
+            {
+              "role": "system",
+              "content": "You are an intelligent smart home assistant. Analyze the context and user request to determine the best smart home actions. Always respond with valid JSON only."
+            },
+            {
+              "role": "user",
+              "content": "Based on this context, what smart home actions should be taken?\n\nContext: {{$json}}\n\nRespond with JSON containing:\n{\n  \"actions\": [\n    {\n      \"device\": \"light.living_room\",\n      \"action\": \"turn_on\",\n      \"brightness\": 80,\n      \"reason\": \"User is home and it's evening\"\n    }\n  ],\n  \"ai_message\": \"Brief explanation of what I'm doing\",\n  \"priority\": \"high/medium/low\",\n  \"estimated_energy_impact\": \"low/medium/high\"\n}\n\nConsider: time of day, user patterns, energy efficiency, and comfort."
+            }
+          ]
+        },
+        "options": {
+          "temperature": 0.3,
+          "maxTokens": 300
+        }
+      },
+      "id": "ai-decision-maker",
+      "name": "AI Decision Maker",
+      "type": "n8n-nodes-base.openAi",
+      "typeVersion": 1,
+      "position": [600, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Parse AI response and prepare actions\nlet aiResponse;\ntry {\n  const responseText = $input.first().json.choices[0].message.content;\n  aiResponse = JSON.parse(responseText);\n} catch (error) {\n  return [{\n    json: {\n      error: 'AI response parsing failed',\n      raw_response: $input.first().json.choices[0].message.content\n    }\n  }];\n}\n\n// Validate and structure actions\nconst actions = aiResponse.actions || [];\nconst validActions = actions.filter(action => \n  action.device && action.action && ['turn_on', 'turn_off', 'set_brightness', 'set_temperature'].includes(action.action)\n);\n\n// Group actions by priority\nconst highPriority = validActions.filter(a => a.priority === 'high');\nconst mediumPriority = validActions.filter(a => a.priority === 'medium');\nconst lowPriority = validActions.filter(a => a.priority === 'low');\n\nreturn [{\n  json: {\n    actions: validActions,\n    priority_groups: {\n      high: highPriority,\n      medium: mediumPriority,\n      low: lowPriority\n    },\n    ai_message: aiResponse.ai_message || 'Smart home actions executed',\n    total_actions: validActions.length,\n    energy_impact: aiResponse.estimated_energy_impact || 'unknown'\n  }\n}];"
+      },
+      "id": "action-processor",
+      "name": "Action Processor",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [800, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "has-actions",
+              "leftValue": "={{$json.total_actions}}",
+              "rightValue": 0,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "action-check",
+      "name": "Has Actions?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [1000, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{$node['Environment'].json['ha_url']}}/api/services/light/turn_on",
+        "authentication": "none",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer {{$node['Environment'].json['ha_token']}}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyContentType": "json",
+        "jsonBody": "={{$json}}"
+      },
+      "id": "execute-light-action",
+      "name": "Execute Light Action",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1200, 200],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{$node['Environment'].json['ha_url']}}/api/services/switch/turn_on",
+        "authentication": "none",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer {{$node['Environment'].json['ha_token']}}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyContentType": "json",
+        "jsonBody": "={{$json}}"
+      },
+      "id": "execute-switch-action",
+      "name": "Execute Switch Action",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1200, 300],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{$node['Environment'].json['ha_url']}}/api/services/climate/set_temperature",
+        "authentication": "none",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer {{$node['Environment'].json['ha_token']}}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyContentType": "json",
+        "jsonBody": "={{$json}}"
+      },
+      "id": "execute-climate-action",
+      "name": "Execute Climate Action",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1200, 400],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "jsCode": "// Process actions by type and execute them\nconst actions = $input.first().json.actions;\nconst results = [];\n\nfor (const action of actions) {\n  try {\n    let serviceData = { entity_id: action.device };\n    \n    // Add specific parameters based on action type\n    if (action.brightness) serviceData.brightness_pct = action.brightness;\n    if (action.temperature) serviceData.temperature = action.temperature;\n    if (action.color_temp) serviceData.color_temp = action.color_temp;\n    \n    // Determine the service to call\n    let service = action.action;\n    let domain = action.device.split('.')[0];\n    \n    // Map actions to services\n    if (action.action === 'set_brightness') service = 'turn_on';\n    if (action.action === 'set_temperature' && domain === 'climate') service = 'set_temperature';\n    \n    results.push({\n      device: action.device,\n      action: action.action,\n      service_data: serviceData,\n      domain: domain,\n      service: service,\n      reason: action.reason,\n      status: 'pending'\n    });\n  } catch (error) {\n    results.push({\n      device: action.device,\n      action: action.action,\n      error: error.message,\n      status: 'failed'\n    });\n  }\n}\n\nreturn [{ json: { actions: results, total: results.length } }];"
+      },
+      "id": "action-executor",
+      "name": "Action Executor",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1400, 300]
+    },
+    {
+      "parameters": {
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "openAiApi",
+        "resource": "chat",
+        "operation": "create",
+        "model": "gpt-4",
+        "messages": {
+          "values": [
+            {
+              "role": "system",
+              "content": "Generate a natural, friendly summary of smart home actions taken. Be conversational and helpful."
+            },
+            {
+              "role": "user",
+              "content": "Create a friendly summary of these smart home actions:\n\nActions: {{$json.actions}}\nAI Message: {{$node['Action Processor'].json.ai_message}}\nEnergy Impact: {{$node['Action Processor'].json.energy_impact}}\n\nRespond with a brief, conversational summary (max 30 words) explaining what was done and why."
+            }
+          ]
+        },
+        "options": {
+          "temperature": 0.7,
+          "maxTokens": 100
+        }
+      },
+      "id": "ai-summary-generator",
+      "name": "AI Summary Generator",
+      "type": "n8n-nodes-base.openAi",
+      "typeVersion": 1,
+      "position": [1600, 300]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{$json}}",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-Smart-Home-Status",
+                "value": "success"
+              }
+            ]
+          }
+        }
+      },
+      "id": "success-response",
+      "name": "Success Response",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [1800, 300]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{$json}}",
+        "responseCode": 200,
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-Smart-Home-Status",
+                "value": "no-actions"
+              }
+            ]
+          }
+        }
+      },
+      "id": "no-action-response",
+      "name": "No Action Response",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [1000, 500]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "ha_url",
+              "value": "http://homeassistant.local:8123"
+            },
+            {
+              "name": "ha_token",
+              "value": "your-home-assistant-long-lived-token-here"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "environment",
+      "name": "Environment",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [200, 500]
+    }
+  ],
+  "connections": {
+    "Smart Request": {
+      "main": [
+        [
+          {
+            "node": "Context Analyzer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Context Analyzer": {
+      "main": [
+        [
+          {
+            "node": "AI Decision Maker",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Decision Maker": {
+      "main": [
+        [
+          {
+            "node": "Action Processor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Action Processor": {
+      "main": [
+        [
+          {
+            "node": "Has Actions?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Has Actions?": {
+      "main": [
+        [
+          {
+            "node": "Action Executor",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No Action Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Action Executor": {
+      "main": [
+        [
+          {
+            "node": "AI Summary Generator",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Summary Generator": {
+      "main": [
+        [
+          {
+            "node": "Success Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": ""
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "updatedAt": "2025-01-01T00:00:00.000Z",
+      "id": "ai-smart-home-intelligence",
+      "name": "AI Smart Home"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2025-01-01T00:00:00.000Z",
+  "versionId": "1",
+  "active": false
+}
