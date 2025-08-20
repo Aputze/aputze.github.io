@@ -104,6 +104,68 @@
       opacity: 0.6;
       cursor: not-allowed;
     }
+    
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(5px);
+    }
+    
+    .modal-content {
+      background-color: var(--card);
+      margin: 2% auto;
+      padding: 0;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius);
+      width: 90%;
+      max-width: 1200px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: var(--shadow);
+    }
+    
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 24px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .modal-header h2 {
+      margin: 0;
+      color: var(--text);
+    }
+    
+    .close {
+      color: var(--muted);
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+      line-height: 1;
+    }
+    
+    .close:hover {
+      color: var(--text);
+    }
+    
+    .modal-body {
+      padding: 24px;
+    }
+    
+    /* Hover effect for project cards */
+    .project:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
+    }
   </style>
 
   <script type="application/ld+json">
@@ -125,7 +187,6 @@
         <div class="pill">Sergei Lerner · ERP · Automation · IoT · AI</div>
         <div class="links">
           <a href="#projects">Projects</a>
-          <a href="#whispr-demo">Whispr Demo</a>
           <a href="#about">About</a>
           <a href="#blog">Blog</a>
           <a href="#contact">Contact</a>
@@ -197,10 +258,11 @@
           <h3>Self-hosted GPT-OSS Deployment</h3>
           <p>Local AI model deployment with Docker, GPU optimization, and integration with automation workflows. Cost-effective alternative to cloud APIs with full data privacy control.</p>
         </article>
-        <article class="card project">
+        <article class="card project" onclick="openWhisprModal()" style="cursor: pointer;">
           <div class="tag">AI · Voice · Gradio</div>
           <h3>Whispr — AI Voice Assistant</h3>
           <p>Interactive AI voice assistant built with Gradio, featuring natural language processing and voice interaction capabilities. Demonstrates practical AI application development and deployment.</p>
+          <p style="margin-top: 8px; font-size: 12px; color: var(--accent);">👆 Click to try the demo</p>
         </article>
         <article class="card project">
           <div class="tag">Prototype</div>
@@ -210,30 +272,7 @@
       </div>
     </section>
 
-    <section id="whispr-demo" class="fade fade3">
-      <h2>Whispr — AI Voice Assistant Demo</h2>
-      <div class="card" style="padding: 24px;">
-        <p style="margin: 0 0 20px 0; color: var(--muted);">
-          Experience my AI voice assistant project built with Gradio. This demonstrates practical AI application development and deployment capabilities.
-        </p>
-        
-        <!-- Gradio Web Component for Whispr -->
-        <script type="module" src="https://gradio.s3-us-west-2.amazonaws.com/5.43.1/gradio.js"></script>
-        <gradio-app 
-          src="https://aputze-whispr.hf.space"
-          style="width: 100%; height: 600px; border-radius: 12px; background: #0a1020; border: 1px solid rgba(255,255,255,.1);">
-        </gradio-app>
-        
-        <div style="margin-top: 16px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
-          <a href="https://aputze-whispr.hf.space" target="_blank" class="btn">
-            🌐 Open in New Tab
-          </a>
-          <span style="font-size: 12px; color: var(--muted);">
-            💡 Built with Gradio • Deployed on Hugging Face Spaces
-          </span>
-        </div>
-      </div>
-    </section>
+
 
     <section id="about" class="fade fade3">
       <h2>About</h2>
@@ -330,6 +369,37 @@
     </footer>
   </main>
 
+  <!-- Whispr Modal -->
+  <div id="whisprModal" class="modal" style="display: none;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Whispr — AI Voice Assistant Demo</h2>
+        <span class="close" onclick="closeWhisprModal()">&times;</span>
+      </div>
+      <div class="modal-body">
+        <p style="margin: 0 0 20px 0; color: var(--muted);">
+          Experience my AI voice assistant project built with Gradio. This demonstrates practical AI application development and deployment capabilities.
+        </p>
+        
+        <!-- Gradio Web Component for Whispr -->
+        <script type="module" src="https://gradio.s3-us-west-2.amazonaws.com/5.43.1/gradio.js"></script>
+        <gradio-app 
+          src="https://aputze-whispr.hf.space"
+          style="width: 100%; height: 600px; border-radius: 12px; background: #0a1020; border: 1px solid rgba(255,255,255,.1);">
+        </gradio-app>
+        
+        <div style="margin-top: 16px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+          <a href="https://aputze-whispr.hf.space" target="_blank" class="btn">
+            🌐 Open in New Tab
+          </a>
+          <span style="font-size: 12px; color: var(--muted);">
+            💡 Built with Gradio • Deployed on Hugging Face Spaces
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
   
   <script>
@@ -421,6 +491,32 @@
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       return emailRegex.test(email);
     }
+    
+    // Whispr Modal functions
+    function openWhisprModal() {
+      document.getElementById('whisprModal').style.display = 'block';
+      document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    }
+    
+    function closeWhisprModal() {
+      document.getElementById('whisprModal').style.display = 'none';
+      document.body.style.overflow = 'auto'; // Restore scrolling
+    }
+    
+    // Close modal when clicking outside of it
+    window.onclick = function(event) {
+      const modal = document.getElementById('whisprModal');
+      if (event.target === modal) {
+        closeWhisprModal();
+      }
+    }
+    
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') {
+        closeWhisprModal();
+      }
+    });
     
     // Add some interactivity to form fields
     document.querySelectorAll('#contactForm input, #contactForm textarea').forEach(field => {
