@@ -179,14 +179,15 @@
     "knowsAbout": ["Priority ERP","Automation","n8n","Zapier","AI","SmartThings","Power BI","IoT"]
   }
   </script>
-  <!-- Google tag (gtag.js) -->
+<!-- Google tag -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-5B9B8J4PK9"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'G-5B9B8J4PK9');
+  gtag('config', 'G-5B9B8J4PK9', { debug_mode: true });
+  gtag('event','test_event',{label:'manual_test',value:1});
 </script>
 </head>
 <body>
