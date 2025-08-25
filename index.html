@@ -220,7 +220,7 @@
         </div>
         <div class="cta">
           <a class="btn primary" href="#projects">View Projects</a>
-          <a class="btn" href="Sergei_Lerner_CV.pdf">Download CV</a>
+          <a id="cv-link" class="btn" href="Sergei_Lerner_CV.pdf">Download CV</a>
           <a class="btn" href="https://www.linkedin.com/in/sergei-lerner/">LinkedIn</a>
         </div>
       </div>
@@ -548,5 +548,20 @@
       });
     });
   </script>
+  <script>
+  // Track CV download clicks in Google Analytics
+  document.addEventListener("DOMContentLoaded", function() {
+    const cvLink = document.getElementById("cv-link");
+    if (cvLink) {
+      cvLink.addEventListener("click", function() {
+        gtag('event', 'file_download', {
+          file_name: 'Sergei_Lerner_CV.pdf',
+          link_text: 'Download CV',
+          location: 'hero_section'
+        });
+      });
+    }
+  });
+</script>
 </body>
 </html>
