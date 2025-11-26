@@ -37,18 +37,18 @@
     .container{max-width:1280px;margin:0 auto;padding:20px 20px}
     header{position:sticky;top:0;background-image:url('header-bg.jpg');background-position:center top;background-size:100% auto;background-repeat:no-repeat;background-attachment:fixed;border-bottom:1px solid rgba(255,255,255,.15);z-index:10;box-shadow:0 4px 20px rgba(0,0,0,.3);position:relative;overflow:hidden;min-height:100vh}
     header::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:transparent;z-index:0;pointer-events:none}
-    header .container{position:relative;z-index:2;padding-top:20px;padding-bottom:20px}
+    header .container{position:relative;z-index:2;padding-top:12px;padding-bottom:12px}
     header .pill{background:rgba(0,0,0,.6);border:2px solid rgba(96,165,250,.8);color:#ffffff;text-shadow:0 3px 10px rgba(0,0,0,1),0 0 30px rgba(0,0,0,.8),0 0 50px rgba(96,165,250,.5);box-shadow:0 6px 20px rgba(0,0,0,.7),0 0 30px rgba(96,165,250,.3);backdrop-filter:blur(8px);font-weight:700}
     header nav .links a{color:#ffffff;text-shadow:0 3px 10px rgba(0,0,0,1),0 0 30px rgba(0,0,0,.8),0 0 50px rgba(96,165,250,.5);font-weight:700;background:rgba(0,0,0,.6);backdrop-filter:blur(8px);border:2px solid rgba(255,255,255,.4);box-shadow:0 4px 15px rgba(0,0,0,.6)}
     header nav .links a:hover{background:rgba(96,165,250,.7);color:#ffffff;border-color:rgba(96,165,250,1);box-shadow:0 6px 25px rgba(96,165,250,.6),0 0 40px rgba(96,165,250,.4);transform:translateY(-1px)}
     .hero{position:relative;z-index:1}
-    nav{display:flex;gap:16px;align-items:center;justify-content:space-between;position:relative;z-index:1}
-    nav .links{display:flex;gap:6px}
-    nav .links a{padding:8px 12px;border-radius:10px;font-weight:500;transition:var(--transition);position:relative}
+    nav{display:flex;gap:12px;align-items:center;justify-content:center;position:relative;z-index:1}
+    nav .links{display:flex;gap:4px}
+    nav .links a{padding:6px 10px;border-radius:10px;font-weight:500;transition:var(--transition);position:relative}
     nav .links a:hover{background:rgba(96,165,250,.1);text-decoration:none;color:var(--accent)}
     nav .links a:active{transform:scale(0.98)}
     .hero{display:grid;grid-template-columns:1.3fr .7fr;gap:20px;align-items:center;padding:40px 0}
-    header h1{margin:60px auto 0;text-align:center;font-size:48px;color:#ffffff;text-shadow:0 3px 15px rgba(0,0,0,.9),0 0 40px rgba(0,0,0,.7),0 0 60px rgba(96,165,250,.4);padding:40px 20px;max-width:100%;line-height:1.2;white-space:nowrap;overflow:hidden;position:relative;z-index:2;--marquee-duration:10s}
+    header h1{margin:20px auto 0;text-align:center;font-size:48px;color:#ffffff;text-shadow:0 3px 15px rgba(0,0,0,.9),0 0 40px rgba(0,0,0,.7),0 0 60px rgba(96,165,250,.4);padding:20px 20px;max-width:100%;line-height:1.2;white-space:nowrap;overflow:hidden;position:relative;z-index:2;--marquee-duration:10s}
     header h1 .marquee-text{display:inline-block;padding-right:30px;will-change:transform}
     header h1.marquee-active .marquee-text{animation:marquee var(--marquee-duration) linear infinite}
     header h1::after{content:'';position:absolute;top:0;right:0;width:50px;height:100%;background:linear-gradient(to right,transparent,rgba(11,18,32,.8));pointer-events:none;z-index:1;opacity:0;transition:opacity 0.3s}
@@ -106,20 +106,25 @@
       .grid{grid-template-columns:1fr;gap:16px}
       .two-col{grid-template-columns:1fr;gap:16px}
       h1{font-size:36px}
-      header h1{font-size:36px;margin-top:40px;padding:30px 16px;white-space:nowrap;overflow:hidden}
+      header h1{font-size:36px;margin-top:20px;padding:20px 16px;white-space:nowrap;overflow:hidden}
       h2{font-size:28px}
       .container{padding:16px 16px}
       section{margin:28px 0}
     }
     @media (max-width:640px){
       h1{font-size:32px}
-      header h1{font-size:28px;margin-top:30px;padding:20px 12px;line-height:1.3;white-space:nowrap;overflow:hidden}
+      header{min-height:auto;background-size:cover;background-attachment:scroll}
+      header h1{font-size:24px;margin-top:15px;padding:15px 12px;line-height:1.3;white-space:nowrap;overflow:hidden}
       h2{font-size:24px}
       .hero{padding:24px 0}
       .hero .card{padding:16px}
       .project{padding:16px}
-      nav{flex-direction:column;gap:12px;align-items:flex-start}
-      nav .links{flex-wrap:wrap}
+      nav{flex-direction:column;gap:8px;align-items:center;justify-content:center}
+      nav > div{width:100%;align-items:center}
+      nav .links{flex-wrap:wrap;justify-content:center;gap:4px;width:100%}
+      nav .links a{font-size:13px;padding:6px 10px}
+      header .pill{font-size:11px;padding:5px 10px;text-align:center;width:auto;max-width:100%}
+      header .container{padding-top:12px;padding-bottom:12px}
     }
     /* Simple fade-in */
     .fade{opacity:0;transform:translateY(10px);animation:fade .7s ease forwards}
@@ -354,12 +359,14 @@
   <header>
     <div class="container">
       <nav>
-        <div class="pill">Sergei Lerner · ERP · Automation · IoT · AI</div>
-        <div class="links">
-          <a href="#projects">Projects</a>
-          <a href="#about">About</a>
-          <a href="#blog">Blog</a>
-          <a href="#contact">Contact</a>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
+          <div class="links">
+            <a href="#projects">Projects</a>
+            <a href="#about">About</a>
+            <a href="#blog">Blog</a>
+            <a href="#contact">Contact</a>
+          </div>
+          <div class="pill">Sergei Lerner · ERP · Automation · IoT · AI</div>
         </div>
       </nav>
       <h1 class="fade">Building the bridge from <span style="color:#a5b4fc">ERP & Automation</span> to <span style="color:#34d399">AI‑powered workflows</span>.</h1>
