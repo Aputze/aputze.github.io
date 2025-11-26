@@ -65,7 +65,16 @@
     section{margin:48px 0}
     .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
     .project{padding:24px;transition:var(--transition);height:100%;display:flex;flex-direction:column}
-    .project h3{margin:12px 0 8px;font-size:18px;line-height:1.4;font-weight:600;letter-spacing:-0.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .project h3{margin:12px 0 8px;font-size:18px;line-height:1.4;font-weight:600;letter-spacing:-0.01em;white-space:nowrap;overflow:hidden;position:relative;display:block;--marquee-duration:8s}
+    .project h3 .marquee-text{display:inline-block;padding-right:30px;will-change:transform}
+    .project h3.marquee-active .marquee-text{animation:marquee var(--marquee-duration) linear infinite}
+    @keyframes marquee{
+      0%{transform:translateX(0)}
+      100%{transform:translateX(var(--marquee-distance, -100px))}
+    }
+    .project:hover h3.marquee-active .marquee-text{animation-play-state:running}
+    .project h3::after{content:'';position:absolute;top:0;right:0;width:50px;height:100%;background:linear-gradient(to right,transparent,var(--card));pointer-events:none;z-index:1;opacity:0;transition:opacity 0.3s}
+    .project h3.marquee-active::after{opacity:1}
     .project p{margin:0;line-height:1.7;color:var(--muted);flex-grow:1}
     .tag{font-size:11px;color:#a5b4fc;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px;display:block}
     .two-col{display:grid;grid-template-columns:1fr 1fr;gap:24px}
@@ -716,6 +725,32 @@
         });
       });
     }
+    
+    // Marquee effect for project headers that overflow
+    document.querySelectorAll('.project h3').forEach(function(h3) {
+      const text = h3.textContent;
+      h3.innerHTML = '<span class="marquee-text">' + text + '</span>';
+      
+      // Check if text overflows
+      const checkOverflow = function() {
+        const span = h3.querySelector('.marquee-text');
+        if (span && span.scrollWidth > h3.offsetWidth) {
+          h3.classList.add('marquee-active');
+          // Calculate scroll distance (how much is hidden)
+          const scrollDistance = span.scrollWidth - h3.offsetWidth;
+          h3.style.setProperty('--marquee-distance', '-' + scrollDistance + 'px');
+          // Calculate animation duration based on text length (faster for longer text)
+          const duration = Math.max(6, scrollDistance / 30);
+          h3.style.setProperty('--marquee-duration', duration + 's');
+        } else {
+          h3.classList.remove('marquee-active');
+        }
+      };
+      
+      // Check on load and resize
+      setTimeout(checkOverflow, 100); // Small delay to ensure layout is complete
+      window.addEventListener('resize', checkOverflow);
+    });
   });
 </script>
 </body>
