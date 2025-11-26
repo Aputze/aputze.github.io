@@ -35,24 +35,30 @@
     a{color:var(--accent);text-decoration:none;transition:var(--transition)}
     a:hover{text-decoration:underline;color:var(--accent2)}
     .container{max-width:1280px;margin:0 auto;padding:20px 20px}
-    header{position:sticky;top:0;background:rgba(11,18,32,.85);backdrop-filter:blur(12px) saturate(180%);border-bottom:1px solid rgba(255,255,255,.08);z-index:10;box-shadow:0 4px 20px rgba(0,0,0,.1)}
-    nav{display:flex;gap:16px;align-items:center;justify-content:space-between}
+    header{position:sticky;top:0;background-image:url('header-bg.jpg');background-position:center top;background-size:100% auto;background-repeat:no-repeat;background-attachment:fixed;border-bottom:1px solid rgba(255,255,255,.15);z-index:10;box-shadow:0 4px 20px rgba(0,0,0,.3);position:relative;overflow:hidden;min-height:100vh}
+    header::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:transparent;z-index:0;pointer-events:none}
+    header .container{position:relative;z-index:2;padding-top:20px;padding-bottom:20px}
+    header .pill{background:rgba(0,0,0,.6);border:2px solid rgba(96,165,250,.8);color:#ffffff;text-shadow:0 3px 10px rgba(0,0,0,1),0 0 30px rgba(0,0,0,.8),0 0 50px rgba(96,165,250,.5);box-shadow:0 6px 20px rgba(0,0,0,.7),0 0 30px rgba(96,165,250,.3);backdrop-filter:blur(8px);font-weight:700}
+    header nav .links a{color:#ffffff;text-shadow:0 3px 10px rgba(0,0,0,1),0 0 30px rgba(0,0,0,.8),0 0 50px rgba(96,165,250,.5);font-weight:700;background:rgba(0,0,0,.6);backdrop-filter:blur(8px);border:2px solid rgba(255,255,255,.4);box-shadow:0 4px 15px rgba(0,0,0,.6)}
+    header nav .links a:hover{background:rgba(96,165,250,.7);color:#ffffff;border-color:rgba(96,165,250,1);box-shadow:0 6px 25px rgba(96,165,250,.6),0 0 40px rgba(96,165,250,.4);transform:translateY(-1px)}
+    .hero{position:relative;z-index:1}
+    nav{display:flex;gap:16px;align-items:center;justify-content:space-between;position:relative;z-index:1}
     nav .links{display:flex;gap:6px}
     nav .links a{padding:8px 12px;border-radius:10px;font-weight:500;transition:var(--transition);position:relative}
     nav .links a:hover{background:rgba(96,165,250,.1);text-decoration:none;color:var(--accent)}
     nav .links a:active{transform:scale(0.98)}
     .hero{display:grid;grid-template-columns:1.3fr .7fr;gap:20px;align-items:center;padding:40px 0}
-    .hero h1{grid-column:1/-1;margin-bottom:16px}
+    header h1{margin:60px auto 0;text-align:center;font-size:48px;color:#ffffff;text-shadow:0 3px 15px rgba(0,0,0,.9),0 0 40px rgba(0,0,0,.7),0 0 60px rgba(96,165,250,.4);padding:40px 20px;max-width:100%;line-height:1.2;white-space:nowrap;overflow:hidden;position:relative;z-index:2;--marquee-duration:10s}
+    header h1 .marquee-text{display:inline-block;padding-right:30px;will-change:transform}
+    header h1.marquee-active .marquee-text{animation:marquee var(--marquee-duration) linear infinite}
+    header h1::after{content:'';position:absolute;top:0;right:0;width:50px;height:100%;background:linear-gradient(to right,transparent,rgba(11,18,32,.8));pointer-events:none;z-index:1;opacity:0;transition:opacity 0.3s}
+    header h1.marquee-active::after{opacity:1}
+    header h1 span{text-shadow:0 3px 15px rgba(0,0,0,.9),0 0 40px rgba(0,0,0,.7)}
     .card{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);box-shadow:var(--shadow);transition:var(--transition);position:relative;overflow:hidden}
     .card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(96,165,250,.3),transparent);opacity:0;transition:var(--transition)}
     .card:hover::before{opacity:1}
     .hero .card{padding:20px}
     h1{font-size:44px;line-height:1.2;margin:0 0 20px;font-weight:700;letter-spacing:-0.02em;white-space:nowrap;overflow:hidden;position:relative;display:block;--marquee-duration:10s}
-    .hero h1{margin-left:calc(-20px);margin-right:calc(-20px);padding-left:20px;padding-right:20px;width:calc(100% + 40px)}
-    .hero h1 .marquee-text{display:inline-block;padding-right:30px;will-change:transform}
-    .hero h1.marquee-active .marquee-text{animation:marquee var(--marquee-duration) linear infinite}
-    .hero h1::after{content:'';position:absolute;top:0;right:0;width:50px;height:100%;background:linear-gradient(to right,transparent,var(--bg));pointer-events:none;z-index:1;opacity:0;transition:opacity 0.3s}
-    .hero h1.marquee-active::after{opacity:1}
     h2{font-size:32px;line-height:1.3;margin:0 0 20px;font-weight:700;letter-spacing:-0.01em;color:var(--text)}
     h3{font-size:20px;line-height:1.4;margin:0;font-weight:600;letter-spacing:-0.01em}
     h4{font-size:18px;line-height:1.4;margin:0;font-weight:600}
@@ -100,17 +106,17 @@
       .grid{grid-template-columns:1fr;gap:16px}
       .two-col{grid-template-columns:1fr;gap:16px}
       h1{font-size:36px}
+      header h1{font-size:36px;margin-top:40px;padding:30px 16px;white-space:nowrap;overflow:hidden}
       h2{font-size:28px}
       .container{padding:16px 16px}
-      .hero h1{margin-left:calc(-16px);margin-right:calc(-16px);padding-left:16px;padding-right:16px;width:calc(100% + 32px)}
       section{margin:28px 0}
     }
     @media (max-width:640px){
       h1{font-size:32px}
+      header h1{font-size:28px;margin-top:30px;padding:20px 12px;line-height:1.3;white-space:nowrap;overflow:hidden}
       h2{font-size:24px}
       .hero{padding:24px 0}
       .hero .card{padding:16px}
-      .hero h1{margin-left:calc(-16px);margin-right:calc(-16px);padding-left:16px;padding-right:16px;width:calc(100% + 32px)}
       .project{padding:16px}
       nav{flex-direction:column;gap:12px;align-items:flex-start}
       nav .links{flex-wrap:wrap}
@@ -276,16 +282,6 @@
       border-radius:4px;
     }
     
-    /* Hero section specific enhancements */
-    .hero h1{
-      background:linear-gradient(135deg, var(--text) 0%, var(--muted) 100%);
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-      background-clip:text;
-    }
-    .hero h1 span{
-      -webkit-text-fill-color:initial;
-    }
     
     /* Improved KPI card styling */
     .kpi .item .note{
@@ -366,12 +362,12 @@
           <a href="#contact">Contact</a>
         </div>
       </nav>
+      <h1 class="fade">Building the bridge from <span style="color:#a5b4fc">ERP & Automation</span> to <span style="color:#34d399">AI‑powered workflows</span>.</h1>
     </div>
   </header>
 
   <main class="container">
     <section class="hero">
-      <h1 class="fade">Building the bridge from <span style="color:#a5b4fc">ERP & Automation</span> to <span style="color:#34d399">AI‑powered workflows</span>.</h1>
       <div class="card fade fade2">
         <p class="muted">13+ years with Priority ERP · custom workflows · pricing logic · API integrations · plus hands‑on automation with n8n/Zapier, SmartThings, IoT, and data pipelines. Currently focused on applying LLMs and agents to real business processes.</p>
         <div class="badges">
@@ -734,23 +730,23 @@
       });
     }
     
-    // Marquee effect for hero h1 that overflows
-    const heroH1 = document.querySelector('.hero h1');
-    if (heroH1) {
+    // Marquee effect for header h1 that overflows
+    const headerH1 = document.querySelector('header h1');
+    if (headerH1) {
       // Preserve the HTML structure with spans for colored text
-      const originalHTML = heroH1.innerHTML;
-      heroH1.innerHTML = '<span class="marquee-text">' + originalHTML + '</span>';
+      const originalHTML = headerH1.innerHTML;
+      headerH1.innerHTML = '<span class="marquee-text">' + originalHTML + '</span>';
       
       const checkOverflow = function() {
-        const span = heroH1.querySelector('.marquee-text');
-        if (span && span.scrollWidth > heroH1.offsetWidth) {
-          heroH1.classList.add('marquee-active');
-          const scrollDistance = span.scrollWidth - heroH1.offsetWidth;
-          heroH1.style.setProperty('--marquee-distance', '-' + scrollDistance + 'px');
+        const span = headerH1.querySelector('.marquee-text');
+        if (span && span.scrollWidth > headerH1.offsetWidth) {
+          headerH1.classList.add('marquee-active');
+          const scrollDistance = span.scrollWidth - headerH1.offsetWidth;
+          headerH1.style.setProperty('--marquee-distance', '-' + scrollDistance + 'px');
           const duration = Math.max(8, scrollDistance / 25);
-          heroH1.style.setProperty('--marquee-duration', duration + 's');
+          headerH1.style.setProperty('--marquee-duration', duration + 's');
         } else {
-          heroH1.classList.remove('marquee-active');
+          headerH1.classList.remove('marquee-active');
         }
       };
       
