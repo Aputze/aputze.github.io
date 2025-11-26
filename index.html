@@ -70,7 +70,9 @@
     .project h3.marquee-active .marquee-text{animation:marquee var(--marquee-duration) linear infinite}
     @keyframes marquee{
       0%{transform:translateX(0)}
-      100%{transform:translateX(var(--marquee-distance, -100px))}
+      40%{transform:translateX(var(--marquee-distance, -100px))}
+      60%{transform:translateX(var(--marquee-distance, -100px))}
+      100%{transform:translateX(0)}
     }
     .project:hover h3.marquee-active .marquee-text{animation-play-state:running}
     .project h3::after{content:'';position:absolute;top:0;right:0;width:50px;height:100%;background:linear-gradient(to right,transparent,var(--card));pointer-events:none;z-index:1;opacity:0;transition:opacity 0.3s}
