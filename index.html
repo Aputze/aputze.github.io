@@ -24,51 +24,86 @@
       --accent2:#22d3ee;
       --green:#34d399;
       --shadow: 0 10px 30px rgba(0,0,0,.25);
+      --shadow-lg: 0 20px 60px rgba(0,0,0,.4);
+      --shadow-glow: 0 0 20px rgba(96,165,250,.15);
       --radius: 16px;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
     *{box-sizing:border-box}
-    html,body{margin:0;padding:0;background:linear-gradient(180deg,#0b1220 0%,#0a0f1c 100%);color:var(--text);font:16px/1.6 system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
-    a{color:var(--accent);text-decoration:none}
-    a:hover{text-decoration:underline}
-    .container{max-width:1100px;margin:0 auto;padding:24px}
-    header{position:sticky;top:0;background:rgba(11,18,32,.7);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.06);z-index:10}
-    nav{display:flex;gap:18px;align-items:center;justify-content:space-between}
-    nav .links a{padding:10px 12px;border-radius:10px}
-    nav .links a:hover{background:rgba(255,255,255,.06)}
-    .hero{display:grid;grid-template-columns:1.3fr .7fr;gap:24px;align-items:center;padding:54px 0}
-    .card{background:var(--card);border:1px solid rgba(255,255,255,.06);border-radius:var(--radius);box-shadow:var(--shadow)}
-    .hero .card{padding:28px}
-    h1{font-size:40px;line-height:1.15;margin:0 0 12px}
-    .muted{color:var(--muted)}
-    .pill{display:inline-flex;gap:8px;align-items:center;background:rgba(96,165,250,.15);border:1px solid rgba(96,165,250,.35);color:#dbeafe;padding:6px 10px;border-radius:999px;font-size:13px}
-    .cta{display:flex;gap:12px;margin-top:18px;flex-wrap:wrap}
-    .btn{border:1px solid rgba(255,255,255,.14);padding:10px 14px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));color:var(--text);box-shadow:var(--shadow)}
-    .btn.primary{background:linear-gradient(90deg,var(--accent),var(--accent2));border:none;color:#0b1220;font-weight:700}
-    .badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
-    .badge{border:1px solid rgba(255,255,255,.14);padding:6px 10px;border-radius:999px;color:#cbd5e1;background:rgba(255,255,255,.05);font-size:12px}
-    section{margin:36px 0}
-    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-    .project{padding:18px}
-    .project h3{margin:8px 0 6px}
-    .project p{margin:0}
-    .tag{font-size:12px;color:#a5b4fc}
-    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-    .list{padding-left:18px;margin:0}
-    footer{padding:36px 0;border-top:1px solid rgba(255,255,255,.06);margin-top:48px}
-    .kpi{display:flex;gap:20px;flex-wrap:wrap}
-    .kpi .item{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);padding:10px 14px;border-radius:12px}
-    .note{font-size:13px;color:#9ca3af}
+    html{scroll-behavior:smooth}
+    html,body{margin:0;padding:0;background:linear-gradient(180deg,#0b1220 0%,#0a0f1c 100%);color:var(--text);font:16px/1.7 system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+    a{color:var(--accent);text-decoration:none;transition:var(--transition)}
+    a:hover{text-decoration:underline;color:var(--accent2)}
+    .container{max-width:1280px;margin:0 auto;padding:32px 24px}
+    header{position:sticky;top:0;background:rgba(11,18,32,.85);backdrop-filter:blur(12px) saturate(180%);border-bottom:1px solid rgba(255,255,255,.08);z-index:10;box-shadow:0 4px 20px rgba(0,0,0,.1)}
+    nav{display:flex;gap:24px;align-items:center;justify-content:space-between}
+    nav .links{display:flex;gap:8px}
+    nav .links a{padding:10px 16px;border-radius:10px;font-weight:500;transition:var(--transition);position:relative}
+    nav .links a:hover{background:rgba(96,165,250,.1);text-decoration:none;color:var(--accent)}
+    nav .links a:active{transform:scale(0.98)}
+    .hero{display:grid;grid-template-columns:1.3fr .7fr;gap:32px;align-items:center;padding:64px 0}
+    .card{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);box-shadow:var(--shadow);transition:var(--transition);position:relative;overflow:hidden}
+    .card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(96,165,250,.3),transparent);opacity:0;transition:var(--transition)}
+    .card:hover::before{opacity:1}
+    .hero .card{padding:32px}
+    h1{font-size:44px;line-height:1.2;margin:0 0 16px;font-weight:700;letter-spacing:-0.02em}
+    h2{font-size:32px;line-height:1.3;margin:0 0 32px;font-weight:700;letter-spacing:-0.01em;color:var(--text)}
+    h3{font-size:20px;line-height:1.4;margin:0;font-weight:600;letter-spacing:-0.01em}
+    h4{font-size:18px;line-height:1.4;margin:0;font-weight:600}
+    .muted{color:var(--muted);line-height:1.7}
+    .pill{display:inline-flex;gap:8px;align-items:center;background:rgba(96,165,250,.12);border:1px solid rgba(96,165,250,.25);color:#dbeafe;padding:8px 14px;border-radius:999px;font-size:13px;font-weight:500;transition:var(--transition)}
+    .pill:hover{background:rgba(96,165,250,.18);border-color:rgba(96,165,250,.4)}
+    .cta{display:flex;gap:12px;margin-top:24px;flex-wrap:wrap}
+    .btn{border:1px solid rgba(255,255,255,.15);padding:12px 20px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.03));color:var(--text);box-shadow:var(--shadow);font-weight:500;transition:var(--transition);cursor:pointer;display:inline-flex;align-items:center;justify-content:center}
+    .btn:hover{background:linear-gradient(180deg,rgba(255,255,255,.1),rgba(255,255,255,.05));border-color:rgba(255,255,255,.25);transform:translateY(-1px);box-shadow:0 12px 35px rgba(0,0,0,.3);text-decoration:none}
+    .btn:active{transform:translateY(0)}
+    .btn.primary{background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;color:#0b1220;font-weight:700;box-shadow:0 4px 15px rgba(96,165,250,.3)}
+    .btn.primary:hover{box-shadow:0 6px 25px rgba(96,165,250,.4);transform:translateY(-2px);text-decoration:none}
+    .badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+    .badge{border:1px solid rgba(255,255,255,.12);padding:8px 14px;border-radius:999px;color:#cbd5e1;background:rgba(255,255,255,.04);font-size:12px;font-weight:500;transition:var(--transition)}
+    .badge:hover{border-color:rgba(96,165,250,.3);background:rgba(96,165,250,.08);color:var(--accent);transform:translateY(-1px)}
+    section{margin:48px 0}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+    .project{padding:24px;transition:var(--transition);height:100%;display:flex;flex-direction:column}
+    .project h3{margin:12px 0 8px;font-size:18px;line-height:1.4;font-weight:600;letter-spacing:-0.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .project p{margin:0;line-height:1.7;color:var(--muted);flex-grow:1}
+    .tag{font-size:11px;color:#a5b4fc;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px;display:block}
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+    .list{padding-left:20px;margin:16px 0;line-height:1.8}
+    .list li{margin:8px 0;color:var(--muted)}
+    footer{padding:48px 0;border-top:1px solid rgba(255,255,255,.08);margin-top:64px}
+    .kpi{display:flex;gap:16px;flex-wrap:wrap}
+    .kpi .item{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);padding:16px 20px;border-radius:12px;flex:1;min-width:120px;transition:var(--transition)}
+    .kpi .item:hover{background:rgba(96,165,250,.08);border-color:rgba(96,165,250,.2);transform:translateY(-2px)}
+    .kpi .item strong{display:block;font-size:28px;font-weight:700;color:var(--accent);line-height:1.2;margin-bottom:4px}
+    .note{font-size:13px;color:#9ca3af;line-height:1.6}
+    @media (max-width:1200px){
+      .container{max-width:100%}
+    }
     @media (max-width:950px){
-      .hero{grid-template-columns:1fr}
-      .grid{grid-template-columns:1fr}
-      .two-col{grid-template-columns:1fr}
+      .hero{grid-template-columns:1fr;padding:48px 0;gap:24px}
+      .grid{grid-template-columns:1fr;gap:20px}
+      .two-col{grid-template-columns:1fr;gap:20px}
+      h1{font-size:36px}
+      h2{font-size:28px}
+      .container{padding:24px 20px}
+      section{margin:40px 0}
+    }
+    @media (max-width:640px){
+      h1{font-size:32px}
+      h2{font-size:24px}
+      .hero{padding:32px 0}
+      .hero .card{padding:24px}
+      .project{padding:20px}
+      nav{flex-direction:column;gap:16px;align-items:flex-start}
+      nav .links{flex-wrap:wrap}
     }
     /* Simple fade-in */
     .fade{opacity:0;transform:translateY(10px);animation:fade .7s ease forwards}
     .fade2{animation-delay:.15s}
     .fade3{animation-delay:.3s}
     @keyframes fade{to{opacity:1;transform:none}}
-    code{background:#0a1020;border:1px solid rgba(255,255,255,.1);padding:2px 6px;border-radius:6px}
+    code{background:#0a1020;border:1px solid rgba(255,255,255,.1);padding:2px 6px;border-radius:6px;font-size:14px}
     
     /* Form styles */
     .form-message {
@@ -160,11 +195,124 @@
       padding: 24px;
     }
     
-    /* Hover effect for project cards */
+    /* Enhanced project card hover effects */
+    .project{
+      border:1px solid rgba(255,255,255,.06);
+    }
     .project:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-      transition: all 0.3s ease;
+      transform: translateY(-4px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), var(--shadow-glow);
+      border-color: rgba(96,165,250,.2);
+      background: linear-gradient(135deg, var(--card) 0%, rgba(15,23,42,.95) 100%);
+    }
+    .project:hover .tag{
+      color: var(--accent);
+    }
+    .project a{
+      transition:var(--transition);
+    }
+    .project a:hover{
+      color: var(--accent2);
+      text-decoration:none;
+    }
+    
+    /* Enhanced card hover with glow */
+    .card:hover{
+      border-color: rgba(96,165,250,.15);
+      box-shadow: var(--shadow-lg), var(--shadow-glow);
+    }
+    
+    /* Improved form inputs */
+    input, textarea{
+      transition:var(--transition);
+    }
+    input:hover, textarea:hover{
+      border-color: rgba(255,255,255,.2) !important;
+    }
+    
+    /* Enhanced modal */
+    .modal-content{
+      box-shadow: var(--shadow-lg);
+      border: 1px solid rgba(96,165,250,.1);
+    }
+    
+    /* Section header styling */
+    section h2{
+      position:relative;
+      padding-bottom:16px;
+    }
+    section h2::after{
+      content:'';
+      position:absolute;
+      bottom:0;
+      left:0;
+      width:60px;
+      height:3px;
+      background:linear-gradient(90deg,var(--accent),var(--accent2));
+      border-radius:2px;
+    }
+    
+    /* Enhanced focus states for accessibility */
+    a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible{
+      outline:2px solid var(--accent);
+      outline-offset:2px;
+      border-radius:4px;
+    }
+    
+    /* Hero section specific enhancements */
+    .hero h1{
+      background:linear-gradient(135deg, var(--text) 0%, var(--muted) 100%);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+    }
+    .hero h1 span{
+      -webkit-text-fill-color:initial;
+    }
+    
+    /* Improved KPI card styling */
+    .kpi .item .note{
+      font-size:12px;
+      color:var(--muted);
+      line-height:1.5;
+    }
+    
+    /* Better badge container spacing */
+    .badges{
+      margin-top:20px;
+    }
+    
+    /* Enhanced project card link styling */
+    .project p:last-of-type{
+      margin-top:12px;
+      padding-top:12px;
+      border-top:1px solid rgba(255,255,255,.05);
+    }
+    
+    /* Refined close button */
+    .close{
+      transition:var(--transition);
+    }
+    .close:hover{
+      transform:scale(1.1);
+    }
+    
+    /* Better form label styling */
+    label{
+      font-weight:500;
+      color:var(--text);
+      display:block;
+      margin-bottom:8px;
+    }
+    
+    /* Enhanced footer */
+    footer{
+      text-align:center;
+    }
+    
+    /* Smooth transitions for interactive elements */
+    a,button,.btn,.badge,.card,.project,.kpi .item{
+      transition-property:color,background-color,border-color,transform,box-shadow,opacity;
     }
   </style>
 
@@ -239,56 +387,56 @@
       <div class="grid">
         <article class="card project">
           <div class="tag">Priority · MCP Server · API Integration</div>
-          <h3>Priority MCP Server</h3>
+          <h3>🔌 Priority MCP Server</h3>
           <p>Built to connect businesses with Priority ERP technology through a standardized integration pipe. This MCP (Model Context Protocol) server acts as a bridge between modern applications and Priority's powerful API, eliminating complex integration challenges and providing a clean, consistent interface for Priority data access. The value: reducing integration time from weeks to hours, enabling businesses to leverage their ERP data more effectively and build technology solutions that seamlessly connect with their existing Priority infrastructure.</p>
           <p style="margin-top: 8px; font-size: 12px; color: var(--accent);">🔗 <a href="https://github.com/Aputze/priority-mcp-server" target="_blank" style="color: var(--accent);">GitHub Repository</a> · <a href="projects/priority-mcp-server-read-more.md" target="_blank" style="color: var(--accent);">Technical Overview</a></p>
         </article>
         <article class="card project">
           <div class="tag">AI · Healthcare · Full-Stack</div>
-          <h3>MedOp AI - Medical Opinion</h3>
+          <h3>🩺 MedOp AI - Medical Opinion</h3>
           <p>AI-powered orthopedic examination system with voice transcription, text improvement, and professional document generation. Features OpenAI Whisper integration and customizable AI prompts.</p>
           <p style="margin-top: 8px; font-size: 12px; color: var(--accent);">🏥 <a href="https://huggingface.co/spaces/aputze/medop" target="_blank" style="color: var(--accent);">Live Demo</a> · <a href="clininsight-embed.html" style="color: var(--accent);">Embedded Version</a> · FastAPI + React</p>
         </article>
         <article class="card project">
           <div class="tag">Priority · REST API · Dashboard</div>
-          <h3>Priority Dashboard</h3>
+          <h3>📊 Priority Dashboard</h3>
           <p>Smart management dashboard built with Priority REST API integration. Features multi-entity API testing, real-time KPIs (Active Customers, Open Orders, Order Balance, Cash Flow), and interactive charts for sales analysis, order tracking, and financial monitoring. Includes year selection and data explorer capabilities.</p>
           <p style="margin-top: 8px; font-size: 12px; color: var(--accent);">🔗 <a href="https://github.com/Aputze/Priority-REST-API" target="_blank" style="color: var(--accent);">GitHub Repository</a></p>
         </article>
         <article class="card project">
           <div class="tag">AI · LLM · Automation</div>
-          <h3>Sidekick — AI Assistant</h3>
+          <h3>🤖 Sidekick — AI Assistant</h3>
           <p>Intelligent AI sidekick leveraging large language models, natural language processing, and seamless workflow automation. Features context-aware responses, multi-modal interactions, and enterprise-grade integration capabilities.</p>
         </article>
         <article class="card project">
           <div class="tag">n8n · Agents · Self-hosted</div>
-          <h3>AI‑assisted Automations with n8n</h3>
+          <h3>⚙️ AI‑assisted Automations with n8n</h3>
           <p>Self-hosted n8n instance with AI agent workflows for pricing audits, customer insights, and notifications. Integrations with SmartThings, Home Assistant, and OpenAI for real‑world automation.</p>
         </article>
         <article class="card project">
           <div class="tag">AI Infrastructure · Docker</div>
-          <h3>Self-hosted GPT-OSS Deployment</h3>
+          <h3>🧠 Self-hosted GPT-OSS Deployment</h3>
           <p>Local AI model deployment with Docker, GPU optimization, and integration with automation workflows. Cost-effective alternative to cloud APIs with full data privacy control.</p>
         </article>
         <article class="card project" onclick="openWhisprModal()" style="cursor: pointer;">
           <div class="tag">AI · Voice · Gradio</div>
-          <h3>Whispr — AI Voice Assistant</h3>
+          <h3>🎤 Whispr — AI Voice Assistant</h3>
           <p>Interactive AI voice assistant built with Gradio, featuring natural language processing and voice interaction capabilities. Demonstrates practical AI application development and deployment.</p>
           <p style="margin-top: 8px; font-size: 12px; color: var(--accent);">👆 Click to try the demo</p>
         </article>
         <article class="card project">
           <div class="tag">IoT · Smart Home · AI</div>
-          <h3>Sonos + SmartThings + Self-hosted GPT</h3>
+          <h3>🏠 Sonos + SmartThings + Self-hosted GPT</h3>
           <p>Voice‑aware scenarios: routines that combine sensor data with local LLM prompts to trigger adaptive audio and alerts. Local GPT-OSS deployment for privacy and cost efficiency.</p>
         </article>
         <article class="card project">
           <div class="tag">Data · BI</div>
-          <h3>Power BI Dashboards</h3>
+          <h3>📈 Power BI Dashboards</h3>
           <p>Operational dashboards for ERP data, including inventory turns, pricing variance, and sales cohorts.</p>
         </article>
         <article class="card project">
           <div class="tag">Priority · API · WCF/REST</div>
-          <h3>Priority Web/API Server — Clean install & hardening</h3>
+          <h3>🖥️ Priority Web/API Server — Clean install & hardening</h3>
           <p>Step‑by‑step re‑installation, service recovery, and secure hosting bundle config on Windows Server & IIS. Added monitoring, SSL, and tuned app‑pool recycling.</p>
         </article>
       </div>
