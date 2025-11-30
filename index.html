@@ -37,7 +37,7 @@
     .container{max-width:1280px;margin:0 auto;padding:20px 20px}
     header{position:relative;background-image:url('header-bg.jpg');background-position:center top;background-size:100% auto;background-repeat:no-repeat;background-attachment:fixed;border-bottom:1px solid rgba(255,255,255,.15);z-index:1;box-shadow:0 4px 20px rgba(0,0,0,.3);overflow:hidden;min-height:100vh}
     header::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:transparent;z-index:0;pointer-events:none}
-    header .container{position:relative;z-index:2;padding-top:12px;padding-bottom:12px;max-width:100%;padding-left:20px;padding-right:20px;display:flex;flex-direction:column;justify-content:center;min-height:100vh;transform:translateY(-25%)}
+    header .container{position:relative;z-index:2;padding-top:12px;padding-bottom:12px;max-width:100%;padding-left:20px;padding-right:20px;display:flex;flex-direction:column;justify-content:center;min-height:100vh;transform:translateY(-12.5%)}
     header .pill{background:rgba(0,0,0,.6);border:2px solid rgba(96,165,250,.8);color:#ffffff;text-shadow:0 3px 10px rgba(0,0,0,1),0 0 30px rgba(0,0,0,.8),0 0 50px rgba(96,165,250,.5);box-shadow:0 6px 20px rgba(0,0,0,.7),0 0 30px rgba(96,165,250,.3);backdrop-filter:blur(8px);font-weight:700}
     header nav .links a{color:#ffffff;text-shadow:0 3px 10px rgba(0,0,0,1),0 0 30px rgba(0,0,0,.8),0 0 50px rgba(96,165,250,.5);font-weight:700;background:rgba(0,0,0,.6);backdrop-filter:blur(8px);border:2px solid rgba(255,255,255,.4);box-shadow:0 4px 15px rgba(0,0,0,.6)}
     header nav .links a:hover{background:rgba(96,165,250,.7);color:#ffffff;border-color:rgba(96,165,250,1);box-shadow:0 6px 25px rgba(96,165,250,.6),0 0 40px rgba(96,165,250,.4);transform:translateY(-1px)}
@@ -127,7 +127,7 @@
     @media (max-width:640px){
       h1{font-size:32px}
       header{min-height:70vh;background-image:url('mobile.png');background-size:100% auto;background-position:center top;background-repeat:no-repeat;background-attachment:scroll;background-color:var(--bg)}
-      header .container{padding-top:4px;padding-bottom:8px;min-height:70vh;display:flex;flex-direction:column;justify-content:center;transform:translateY(-12.5%)}
+      header .container{padding-top:4px;padding-bottom:8px;min-height:70vh;display:flex;flex-direction:column;justify-content:center;transform:translateY(0)}
       header h1{font-size:32px;margin-top:4px;padding:8px 12px;line-height:1.3;white-space:nowrap;overflow:hidden}
       header .header-subtitle{font-size:18px;margin-top:2px;padding:0 12px;line-height:1.3;white-space:nowrap;overflow:hidden}
       nav.header-nav .container{flex-direction:column;gap:8px;padding:12px 16px}
@@ -376,16 +376,19 @@
 <body>
   <header>
     <div class="container">
-      <h1 class="fade">Building the bridge from <span style="color:#a5b4fc">ERP & Automation</span> to <span style="color:#34d399">AI‑powered workflows</span></h1>
-      <p class="header-subtitle fade">13+ years with Priority ERP, leading integrations, custom workflows, pricing logic and API engineering, plus hands-on automation with n8n, Zapier, SmartThings and IoT. Recently focused on MCP-based ERP–AI bridges, data pipelines and delivering end to end AI solutions with real LLM-powered business workflows.</p>
+      <h1 class="fade"><span style="color:#a5b4fc">AI Automation Engineer</span>, <span style="color:#34d399">ERP Integrator</span>, and <span style="color:#06b6d4">Cloud Builder</span></h1>
+      <p class="header-subtitle fade">Bridging business systems with modern AI and automation.</p>
     </div>
   </header>
 
   <nav class="header-nav">
     <div class="container" style="display:flex;justify-content:space-between;align-items:center;padding:16px 20px;gap:16px">
       <div class="links">
+        <a href="#skills">Skills</a>
         <a href="#projects">Projects</a>
         <a href="#about">About</a>
+        <a href="#certifications">Certifications</a>
+        <a href="#freelance">Services</a>
         <a href="#blog">Blog</a>
         <a href="#contact">Contact</a>
       </div>
@@ -396,19 +399,13 @@
   <main class="container">
     <section class="hero">
       <div class="card fade fade2">
-        <div class="badges">
-          <span class="badge">Priority ERP (since 2011)</span>
-          <span class="badge">n8n · Zapier</span>
-          <span class="badge">Power BI</span>
-          <span class="badge">Python · SQL</span>
-          <span class="badge">SmartThings · IoT · MQTT · Docker</span>
-          <span class="badge">n8n · Self-hosted · Home Assistant</span>
-          <span class="badge">AI Infrastructure · Local Models</span>
-        </div>
+        <h2 style="font-size:36px;margin:0 0 8px 0;color:var(--text)">Sergei Lerner</h2>
+        <h3 style="font-size:24px;margin:0 0 16px 0;color:var(--accent);font-weight:600">AI Automation Engineer, ERP Integrator, and Cloud Builder</h3>
+        <p style="font-size:18px;margin:0 0 12px 0;color:var(--text);line-height:1.6">Bridging business systems with modern AI and automation.</p>
+        <p style="font-size:16px;margin:0 0 20px 0;color:var(--muted);line-height:1.6">I design and build intelligent workflows that connect Priority ERP, cloud infrastructure, and LLM agents to create real business impact.</p>
         <div class="cta">
           <a class="btn primary" href="#projects">View Projects</a>
-          <a id="cv-link" class="btn" href="Sergei_Lerner_CV.pdf">Download CV</a>
-          <a class="btn" href="https://www.linkedin.com/in/sergei-lerner/">LinkedIn</a>
+          <a class="btn" href="https://www.linkedin.com/in/sergei-lerner/">Connect on LinkedIn</a>
         </div>
       </div>
       <div class="card fade fade2">
@@ -421,20 +418,80 @@
       </div>
     </section>
 
+    <section id="skills" class="fade fade2">
+      <h2>Skills</h2>
+      <div class="card" style="padding:18px">
+        <div style="margin-bottom:20px">
+          <h3 style="font-size:18px;margin:0 0 12px 0;color:var(--accent)">AI & Machine Learning</h3>
+          <div class="badges">
+            <span class="badge">Machine Learning (Scikit-Learn, TensorFlow, NLP)</span>
+            <span class="badge">Data Science (NumPy, Pandas, Matplotlib, Seaborn)</span>
+            <span class="badge">LLM Integrations, MCP, Prompt Engineering</span>
+            <span class="badge">OCR workflows, document extraction</span>
+          </div>
+        </div>
+        <div style="margin-bottom:20px">
+          <h3 style="font-size:18px;margin:0 0 12px 0;color:var(--accent)">ERP & Business Systems</h3>
+          <div class="badges">
+            <span class="badge">Priority ERP (13+ years)</span>
+            <span class="badge">Pricing logic, workflows, subforms</span>
+            <span class="badge">API integration</span>
+            <span class="badge">ERP–AI bridging and automation</span>
+          </div>
+        </div>
+        <div style="margin-bottom:20px">
+          <h3 style="font-size:18px;margin:0 0 12px 0;color:var(--accent)">Cloud & DevOps</h3>
+          <div class="badges">
+            <span class="badge">AWS EC2, S3, IAM, VPC, CloudWatch</span>
+            <span class="badge">Docker, Git, Linux, APIs</span>
+            <span class="badge">Networking, security groups, key management</span>
+            <span class="badge">CI/CD, deployments, SSL, domain routing</span>
+          </div>
+        </div>
+        <div>
+          <h3 style="font-size:18px;margin:0 0 12px 0;color:var(--accent)">Automation Tools</h3>
+          <div class="badges">
+            <span class="badge">n8n, Zapier</span>
+            <span class="badge">Python automation scripts</span>
+            <span class="badge">SmartThings API</span>
+            <span class="badge">REST APIs and webhook systems</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="projects" class="fade fade2">
       <h2>Highlighted Projects</h2>
       <div class="grid">
         <article class="card project">
-          <div class="tag">Priority · MCP Server · API Integration</div>
-          <h3>🔌 Priority MCP Server</h3>
-          <p>Built to connect businesses with Priority ERP technology through a standardized integration pipe. This MCP (Model Context Protocol) server acts as a bridge between modern applications and Priority's powerful API, eliminating complex integration challenges and providing a clean, consistent interface for Priority data access. The value: reducing integration time from weeks to hours, enabling businesses to leverage their ERP data more effectively and build technology solutions that seamlessly connect with their existing Priority infrastructure.</p>
+          <div class="tag">Priority · MCP Server · LLM Integration · 2025</div>
+          <h3>🔌 Priority ERP MCP Server (LLM Integration)</h3>
+          <p>A Model Context Protocol server for Priority ERP that provides structured and validated data access for LLMs. This server acts as a bridge between modern AI applications and Priority's powerful API, enabling safe, structured data retrieval and real-time ERP–AI interaction.</p>
+          <p><strong>Tech:</strong> Node.js, Priority API (OData), LLMs, MCP, Express, AWS</p>
+          <p><strong>Highlights:</strong> Safe structured data retrieval · Hardening prompts to eliminate hallucinations · Real-time ERP–AI interaction · Used for CFO analytics, document generation, and operational support</p>
           <p style="margin-top: 6px; font-size: 12px; color: var(--accent);">🔗 <a href="https://github.com/Aputze/priority-mcp-server" target="_blank" style="color: var(--accent);">GitHub Repository</a> · <a href="projects/priority-mcp-server-read-more.md" target="_blank" style="color: var(--accent);">Technical Overview</a></p>
         </article>
         <article class="card project">
-          <div class="tag">AI · Healthcare · Full-Stack</div>
-          <h3>🩺 MedOp AI - Medical Opinion</h3>
-          <p>AI-powered orthopedic examination system with voice transcription, text improvement, and professional document generation. Features OpenAI Whisper integration and customizable AI prompts.</p>
-          <p style="margin-top: 6px; font-size: 12px; color: var(--accent);">🏥 <a href="https://huggingface.co/spaces/aputze/medop" target="_blank" style="color: var(--accent);">Live Demo</a> · <a href="clininsight-embed.html" style="color: var(--accent);">Embedded Version</a> · FastAPI + React</p>
+          <div class="tag">AI · Healthcare · OCR · NLP · 2024–2025</div>
+          <h3>🩺 MedOp – AI Medical Document Processor</h3>
+          <p>End-to-end AI system that processes complex medical forms using OCR, NLP, classification, and structured JSON output. The system handles document ingestion, intelligent extraction, and secure routing for medical workflows.</p>
+          <p><strong>Tech:</strong> Python, AWS EC2, S3, AI models, Frontend</p>
+          <p><strong>Highlights:</strong> Custom OCR pipeline · Secure API endpoints · Role-based access · Smart document routing</p>
+          <p style="margin-top: 6px; font-size: 12px; color: var(--accent);">🏥 <a href="https://huggingface.co/spaces/aputze/medop" target="_blank" style="color: var(--accent);">Live Demo</a> · <a href="medop-embed.html" style="color: var(--accent);">Embedded Version</a> · FastAPI + React</p>
+        </article>
+        <article class="card project">
+          <div class="tag">Smart Home · AI · Automation · 2024–2025</div>
+          <h3>🏠 Cloud Automation for Smart Home</h3>
+          <p>Connecting SmartThings API with GPT models through n8n and custom code to build advanced home automations. The system enables natural language device control and provides real-time energy consumption insights.</p>
+          <p><strong>Tech:</strong> n8n, SmartThings API, JavaScript, Python, GPT models</p>
+          <p><strong>Highlights:</strong> Natural language device control · Real-time energy consumption insights · Secure webhook & event processing</p>
+        </article>
+        <article class="card project">
+          <div class="tag">IoT · Priority ERP · Automation</div>
+          <h3>📦 IoT + Priority ERP Workflow Automation Project</h3>
+          <p>Building a bridge between warehouse IoT sensors and Priority ERP events. The system automatically updates item status in ERP based on sensor data and provides real-time stock alerts.</p>
+          <p><strong>Tech:</strong> MQTT, Raspberry Pi, Python, Priority REST API</p>
+          <p><strong>Highlights:</strong> Automatic item updates in ERP · Real-time stock alerts · Cloud-based monitoring</p>
         </article>
         <article class="card project">
           <div class="tag">Priority · REST API · Dashboard</div>
@@ -481,36 +538,95 @@
       </div>
     </section>
 
-
+    <section id="freelance" class="fade fade3">
+      <h2>Freelance Services</h2>
+      <div class="card" style="padding:18px">
+        <p>I help startups and companies build:</p>
+        <ul class="list">
+          <li>AI-powered ERP automations</li>
+          <li>Data extraction and OCR solutions</li>
+          <li>Cloud deployments on AWS</li>
+          <li>Priority custom modules and pricing workflows</li>
+          <li>n8n / Zapier automations</li>
+          <li>Business intelligence dashboards</li>
+        </ul>
+        <p style="margin-top: 16px; color: var(--accent);"><strong>Available for part-time freelance and project-based work.</strong></p>
+      </div>
+    </section>
 
     <section id="about" class="fade fade3">
       <h2>About</h2>
       <div class="two-col">
         <div class="card" style="padding:18px">
-          <p>I’m Sergei Lerner, a Priority ERP specialist with continuous hands‑on experience since 2011. I implement workflows, pricing logic, and API integrations — and I’m now focused on bringing AI into these flows to reduce friction and amplify impact.</p>
+          <p>I am an AI automation engineer and Priority ERP specialist with more than 13 years of hands-on experience. My work focuses on connecting business systems with LLMs, cloud platforms, and automation tools such as n8n, Zapier, and custom MCP (Model Context Protocol) servers.</p>
+          <p>Over the last year I have expanded heavily into AI, data engineering, and cloud technologies, completing advanced certificates in data science, machine learning, AWS, and LLM systems. I build real, production-ready solutions including:</p>
           <ul class="list">
-            <li>ERP Implementation · Priority customizations</li>
-            <li>Automations with n8n & Zapier</li>
-            <li>Python & SQL for data prep and APIs</li>
-            <li>Power BI for reporting</li>
-            <li>Smart home & IoT automation, Docker, VPN</li>
-            <li>Self-hosted n8n & Home Assistant infrastructure</li>
-            <li>Local AI model deployment & GPT-OSS infrastructure</li>
+            <li>AI-powered Priority ERP integrations via custom MCP servers</li>
+            <li>Utility bill OCR and structured-data extraction workflows</li>
+            <li>SmartThings and IoT automations using Python, cloud APIs, and GPT models</li>
+            <li>End-to-end cloud deployments on AWS EC2, Lambda, API Gateway, S3, IAM, and VPC</li>
+            <li>Data pipelines using Python, Pandas, Spark, and SQL</li>
+            <li>AI-driven analytics dashboards using Power BI</li>
           </ul>
+          <p>I am also active as a freelancer, consulting companies on ERP pricing logic, workflow automation, and AI adoption.</p>
         </div>
         <div class="card" style="padding:18px">
           <h3>Certificates (selected)</h3>
           <ul class="list">
-            <li>The Complete Agentic AI Engineering Course — Udemy (2025)</li>
-            <li>AI For Everyone — Andrew Ng (Coursera)</li>
-            <li>Introduction to IoT — Cisco Networking Academy</li>
-            <li>Microsoft Power BI — Complete Introduction (Udemy)</li>
-            <li>ChatGPT Prompt Engineering for Developers (Udemy)</li>
-            <li>Intro to n8n & Zapier — Udemy (2025)</li>
-            <li>IoT & Smart Home Automation — Ongoing</li>
+            <li>Python for Data Science & Machine Learning Bootcamp – Udemy</li>
+            <li>Microsoft Power BI – Complete Introduction – Udemy</li>
+            <li>AI For Everyone – Andrew Ng</li>
+            <li>ChatGPT Prompt Engineering for Developers – DeepLearning.AI</li>
+            <li>Cisco Introduction to IoT</li>
+            <li>Git, Docker & Cloud Foundations</li>
           </ul>
           <p class="note">Full list on LinkedIn.</p>
         </div>
+      </div>
+    </section>
+
+    <section id="certifications" class="fade fade3">
+      <h2>Recent Certifications</h2>
+      <div class="grid">
+        <article class="card project">
+          <div class="tag">Data Science · Machine Learning</div>
+          <h3>🐍 Python for Data Science & Machine Learning Bootcamp</h3>
+          <p><strong>Platform:</strong> Udemy</p>
+          <p>Covers NumPy, Pandas, Matplotlib, Seaborn, Spark, ML, Neural Networks, and TensorFlow.</p>
+          <p style="margin-top: 6px; font-size: 12px; color: var(--accent);">Certificate ID: UC-ccd5…97acf</p>
+        </article>
+        <article class="card project">
+          <div class="tag">Business Intelligence</div>
+          <h3>📊 Microsoft Power BI – Complete Introduction</h3>
+          <p><strong>Platform:</strong> Udemy</p>
+          <p>Comprehensive introduction to Power BI for data visualization and business intelligence dashboards.</p>
+        </article>
+        <article class="card project">
+          <div class="tag">Agentic AI · AI Engineering · 2025</div>
+          <h3>🤖 The Complete Agentic AI Engineering Course (2025)</h3>
+          <p><strong>Platform:</strong> Udemy</p>
+          <p>Comprehensive course on agentic AI development, AI workflow automation, and building intelligent AI systems.</p>
+          <p style="margin-top: 6px; font-size: 12px; color: var(--accent);">Certificate ID: UC-a5bfbeeb-a3f6-4293-bf85-f68aeb6db557</p>
+        </article>
+        <article class="card project">
+          <div class="tag">LLM Engineering</div>
+          <h3>💬 ChatGPT Prompt Engineering for Developers</h3>
+          <p><strong>Platform:</strong> DeepLearning.AI</p>
+          <p>Advanced techniques for prompt engineering and building applications with large language models.</p>
+        </article>
+        <article class="card project">
+          <div class="tag">IoT</div>
+          <h3>🌐 Cisco Introduction to IoT</h3>
+          <p><strong>Platform:</strong> Cisco Networking Academy</p>
+          <p>Fundamentals of Internet of Things, connectivity, and IoT device management.</p>
+        </article>
+        <article class="card project">
+          <div class="tag">SQL · Database · 2025</div>
+          <h3>💾 The Complete SQL Bootcamp: Go from Zero to Hero</h3>
+          <p><strong>Platform:</strong> Udemy</p>
+          <p>Comprehensive SQL course covering database fundamentals, queries, joins, and advanced SQL techniques.</p>
+          <p style="margin-top: 6px; font-size: 12px; color: var(--accent);">Certificate ID: UC-bcdf1070-fede-4a9c-b430-04a24051b33a</p>
+        </article>
       </div>
     </section>
 
@@ -531,10 +647,13 @@
       <h2>Contact</h2>
       <div class="two-col">
         <div class="card" style="padding:18px">
-          <p>📧 Email: <a href="mailto:lernersergei@gmail.com">lernersergei@gmail.com</a></p>
-          <p>💼 LinkedIn: <a href="https://www.linkedin.com/in/sergei-lerner/">sergei-lerner</a></p>
-          <p>🐙 GitHub: <a href="https://github.com/Aputze">Aputze</a></p>
-          <p class="note">🚀 Available for projects in ERP integrations, automation, IoT, and practical AI workflows.</p>
+          <h3 style="font-size:18px;margin:0 0 16px 0;color:var(--accent)">Get in Touch</h3>
+          <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:20px">
+            <a href="mailto:lernersergei@gmail.com" class="btn" style="text-align:center;text-decoration:none">📧 Email: lernersergei@gmail.com</a>
+            <a href="https://www.linkedin.com/in/sergei-lerner/" target="_blank" class="btn" style="text-align:center;text-decoration:none">💼 LinkedIn: sergei-lerner</a>
+            <a href="https://github.com/Aputze" target="_blank" class="btn" style="text-align:center;text-decoration:none">🐙 GitHub: Aputze</a>
+          </div>
+          <p class="note" style="margin-top:16px">🚀 Available for projects in AI-powered ERP integrations, automation, cloud deployments, OCR solutions, and LLM-powered business workflows.</p>
           
           <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.1);">
             <h4 style="margin: 0 0 12px 0; color: var(--accent);">🤖 AI Career Assistant</h4>
