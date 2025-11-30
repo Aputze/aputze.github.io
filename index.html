@@ -35,7 +35,7 @@
     a{color:var(--accent);text-decoration:none;transition:var(--transition)}
     a:hover{text-decoration:underline;color:var(--accent2)}
     .container{max-width:1280px;margin:0 auto;padding:20px 20px}
-    header{position:relative;background-image:url('header-bg.jpg');background-position:center top;background-size:100% auto;background-repeat:no-repeat;background-attachment:fixed;border-bottom:1px solid rgba(255,255,255,.15);z-index:1;box-shadow:0 4px 20px rgba(0,0,0,.3);overflow:hidden;min-height:100vh}
+    header{position:relative;background-image:url('pics/header-bg.jpg');background-position:center top;background-size:100% auto;background-repeat:no-repeat;background-attachment:fixed;border-bottom:1px solid rgba(255,255,255,.15);z-index:1;box-shadow:0 4px 20px rgba(0,0,0,.3);overflow:hidden;min-height:100vh}
     header::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:transparent;z-index:0;pointer-events:none}
     header .container{position:relative;z-index:2;padding-top:12px;padding-bottom:12px;max-width:100%;padding-left:20px;padding-right:20px;display:flex;flex-direction:column;justify-content:center;min-height:100vh;transform:translateY(-12.5%)}
     header .pill{background:rgba(0,0,0,.6);border:2px solid rgba(96,165,250,.8);color:#ffffff;text-shadow:0 3px 10px rgba(0,0,0,1),0 0 30px rgba(0,0,0,.8),0 0 50px rgba(96,165,250,.5);box-shadow:0 6px 20px rgba(0,0,0,.7),0 0 30px rgba(96,165,250,.3);backdrop-filter:blur(8px);font-weight:700}
@@ -87,17 +87,12 @@
     .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
     .project{padding:18px;transition:var(--transition);height:100%;display:flex;flex-direction:column}
     .project h3{margin:8px 0 6px;font-size:18px;line-height:1.4;font-weight:600;letter-spacing:-0.01em;white-space:nowrap;overflow:hidden;position:relative;display:block;--marquee-duration:8s}
-    .project h3 .marquee-text{display:inline-block;padding-right:30px;will-change:transform}
-    .project h3.marquee-active .marquee-text{animation:marquee var(--marquee-duration) linear infinite}
-    @keyframes marquee{
-      0%{transform:translateX(0)}
-      100%{transform:translateX(var(--marquee-distance, -100px))}
-    }
+    .project h3 .marquee-text{display:inline-block;will-change:transform}
+    .project h3.marquee-active .marquee-text{animation:marquee-continuous var(--marquee-duration) linear infinite;animation-play-state:running}
     @keyframes marquee-continuous{
       0%{transform:translateX(0)}
       100%{transform:translateX(var(--marquee-distance, -100px))}
     }
-    .project:hover h3.marquee-active .marquee-text{animation-play-state:running}
     .project h3::after{content:'';position:absolute;top:0;right:0;width:50px;height:100%;background:linear-gradient(to right,transparent,var(--card));pointer-events:none;z-index:1;opacity:0;transition:opacity 0.3s}
     .project h3.marquee-active::after{opacity:1}
     .project p{margin:0;line-height:1.6;color:var(--muted);flex-grow:1}
@@ -126,7 +121,7 @@
     }
     @media (max-width:640px){
       h1{font-size:32px}
-      header{min-height:70vh;background-image:url('mobile.png');background-size:100% auto;background-position:center top;background-repeat:no-repeat;background-attachment:scroll;background-color:var(--bg)}
+      header{min-height:70vh;background-image:url('pics/mobile.png');background-size:100% auto;background-position:center top;background-repeat:no-repeat;background-attachment:scroll;background-color:var(--bg)}
       header .container{padding-top:4px;padding-bottom:8px;min-height:70vh;display:flex;flex-direction:column;justify-content:center;transform:translateY(0)}
       header h1{font-size:32px;margin-top:4px;padding:8px 12px;line-height:1.3;white-space:nowrap;overflow:hidden}
       header .header-subtitle{font-size:18px;margin-top:2px;padding:0 12px;line-height:1.3;white-space:nowrap;overflow:hidden}
@@ -465,7 +460,7 @@
       <div class="grid">
         <article class="card project">
           <div class="tag">Priority · MCP Server · LLM Integration · 2025</div>
-          <h3>🔌 Priority ERP MCP Server (LLM Integration)</h3>
+          <h3><img src="pics/priority.png" alt="Priority" style="width: 24px; height: 24px; vertical-align: middle; display: inline-block; margin-right: 6px; object-fit: contain;"> Priority ERP MCP Server (LLM Integration) <img src="pics/mcp.png" alt="MCP" style="width: 24px; height: 24px; vertical-align: middle; display: inline-block; margin-left: 6px; object-fit: contain;"></h3>
           <p>A Model Context Protocol server for Priority ERP that provides structured and validated data access for LLMs. This server acts as a bridge between modern AI applications and Priority's powerful API, enabling safe, structured data retrieval and real-time ERP–AI interaction.</p>
           <p><strong>Tech:</strong> Node.js, Priority API (OData), LLMs, MCP, Express, AWS</p>
           <p><strong>Highlights:</strong> Safe structured data retrieval · Hardening prompts to eliminate hallucinations · Real-time ERP–AI interaction · Used for CFO analytics, document generation, and operational support</p>
@@ -495,7 +490,7 @@
         </article>
         <article class="card project">
           <div class="tag">Priority · REST API · Dashboard</div>
-          <h3>📊 Priority Dashboard</h3>
+          <h3><img src="pics/priority.png" alt="Priority" style="width: 24px; height: 24px; vertical-align: middle; display: inline-block; margin-right: 6px; object-fit: contain;"> Priority Dashboard</h3>
           <p>Smart management dashboard built with Priority REST API integration. Features multi-entity API testing, real-time KPIs (Active Customers, Open Orders, Order Balance, Cash Flow), and interactive charts for sales analysis, order tracking, and financial monitoring. Includes year selection and data explorer capabilities.</p>
           <p style="margin-top: 6px; font-size: 12px; color: var(--accent);">🔗 <a href="https://github.com/Aputze/Priority-REST-API" target="_blank" style="color: var(--accent);">GitHub Repository</a></p>
         </article>
@@ -506,12 +501,12 @@
         </article>
         <article class="card project">
           <div class="tag">n8n · Agents · Self-hosted</div>
-          <h3>⚙️ AI‑assisted Automations with n8n</h3>
+          <h3><img src="pics/n8n.png" alt="n8n" style="width: 24px; height: 24px; vertical-align: middle; display: inline-block; margin-right: 6px; object-fit: contain;"> AI‑assisted Automations with n8n</h3>
           <p>Self-hosted n8n instance with AI agent workflows for pricing audits, customer insights, and notifications. Integrations with SmartThings, Home Assistant, and OpenAI for real‑world automation.</p>
         </article>
         <article class="card project">
           <div class="tag">AI Infrastructure · Docker</div>
-          <h3>🧠 Self-hosted GPT-OSS Deployment</h3>
+          <h3><img src="pics/Chat-GPT-Logo-white-transparent.png" alt="GPT" style="width: 24px; height: 24px; vertical-align: middle; display: inline-block; margin-right: 6px; object-fit: contain;"> Self-hosted GPT-OSS Deployment</h3>
           <p>Local AI model deployment with Docker, GPU optimization, and integration with automation workflows. Cost-effective alternative to cloud APIs with full data privacy control.</p>
         </article>
         <article class="card project" onclick="openWhisprModal()" style="cursor: pointer;">
@@ -986,22 +981,49 @@
     
     // Marquee effect for project headers that overflow
     document.querySelectorAll('.project h3').forEach(function(h3) {
-      const text = h3.textContent;
-      h3.innerHTML = '<span class="marquee-text">' + text + '</span>';
+      // Preserve the entire HTML structure including all images
+      const originalHTML = h3.innerHTML;
       
-      // Check if text overflows
+      // Initialize with original content wrapped in marquee-text span
+      h3.innerHTML = '<span class="marquee-text">' + originalHTML + '</span>';
+      
+      // Check if text overflows and set up continuous scrolling
       const checkOverflow = function() {
+        // Create a temporary element to measure original width
+        const temp = document.createElement('span');
+        temp.innerHTML = originalHTML;
+        temp.style.position = 'absolute';
+        temp.style.visibility = 'hidden';
+        temp.style.whiteSpace = 'nowrap';
+        temp.style.fontSize = window.getComputedStyle(h3).fontSize;
+        temp.style.fontWeight = window.getComputedStyle(h3).fontWeight;
+        document.body.appendChild(temp);
+        const originalWidth = temp.offsetWidth;
+        document.body.removeChild(temp);
+        
         const span = h3.querySelector('.marquee-text');
-        if (span && span.scrollWidth > h3.offsetWidth) {
+        if (span && originalWidth > h3.offsetWidth) {
+          // Duplicate content for seamless loop
+          const spacing = '&nbsp;&nbsp;&nbsp;&nbsp;';
+          if (!span.dataset.duplicated) {
+            span.innerHTML = originalHTML + spacing + originalHTML + spacing + originalHTML;
+            span.dataset.duplicated = 'true';
+          }
+          
           h3.classList.add('marquee-active');
-          // Calculate scroll distance (how much is hidden)
-          const scrollDistance = span.scrollWidth - h3.offsetWidth;
+          // Scroll exactly one copy width + spacing for seamless continuous loop
+          const spacingWidth = 60; // Spacing between copies
+          const scrollDistance = originalWidth + spacingWidth;
           h3.style.setProperty('--marquee-distance', '-' + scrollDistance + 'px');
-          // Calculate animation duration based on text length (faster for longer text)
+          // Calculate animation duration based on text length
           const duration = Math.max(6, scrollDistance / 30);
           h3.style.setProperty('--marquee-duration', duration + 's');
         } else {
           h3.classList.remove('marquee-active');
+          if (span) {
+            span.innerHTML = originalHTML;
+            span.removeAttribute('data-duplicated');
+          }
         }
       };
       
