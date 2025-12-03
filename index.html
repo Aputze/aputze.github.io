@@ -63,8 +63,8 @@
     nav .links a:active{transform:scale(0.98)}
     .hero{display:grid;grid-template-columns:1.3fr .7fr;gap:20px;align-items:center;padding:20px 0 40px 0}
     header h1{margin:20px auto 0;text-align:center;font-size:64px;color:#ffffff;text-shadow:0 3px 15px rgba(0,0,0,.9),0 0 40px rgba(0,0,0,.7),0 0 60px rgba(96,165,250,.4);padding:20px 20px;max-width:100%;line-height:1.2;white-space:nowrap;overflow:hidden;position:relative;z-index:2;--marquee-duration:10s;opacity:0.85}
-    header h1 .marquee-text{display:inline-block;will-change:transform}
-    header h1.marquee-active .marquee-text{animation:marquee-continuous var(--marquee-duration) linear infinite}
+    header h1 .marquee-text{display:inline-block;will-change:transform;backface-visibility:hidden;-webkit-backface-visibility:hidden;transform:translateZ(0);-webkit-transform:translateZ(0);-webkit-font-smoothing:antialiased}
+    header h1.marquee-active .marquee-text{animation:marquee-continuous var(--marquee-duration) linear infinite;animation-fill-mode:both}
     header h1::after{content:'';position:absolute;top:0;right:0;width:50px;height:100%;background:linear-gradient(to right,transparent,rgba(11,18,32,.8));pointer-events:none;z-index:1;opacity:0;transition:opacity 0.3s}
     header h1.marquee-active::after{opacity:1}
     header h1 span{text-shadow:0 3px 15px rgba(0,0,0,.9),0 0 40px rgba(0,0,0,.7)}
@@ -75,8 +75,8 @@
     header h1 img:not([src*="PriorityAiERP"]){vertical-align:middle;margin-top:0}
     header h1 img[src*="PriorityAiERP"]{background:transparent!important;mix-blend-mode:normal!important;opacity:1!important;image-rendering:-webkit-optimize-contrast;image-rendering:crisp-edges}
     header .header-subtitle{margin:8px auto 0;text-align:center;font-size:28px;color:#ffffff;text-shadow:0 2px 10px rgba(0,0,0,.8),0 0 30px rgba(0,0,0,.6);padding:0 20px;max-width:100%;line-height:1.4;white-space:nowrap;overflow:hidden;position:relative;z-index:2;--marquee-duration:12s;opacity:0.85}
-    header .header-subtitle .marquee-text{display:inline-block;will-change:transform}
-    header .header-subtitle.marquee-active .marquee-text{animation:marquee-continuous var(--marquee-duration) linear infinite}
+    header .header-subtitle .marquee-text{display:inline-block;will-change:transform;backface-visibility:hidden;-webkit-backface-visibility:hidden;transform:translateZ(0);-webkit-transform:translateZ(0);-webkit-font-smoothing:antialiased}
+    header .header-subtitle.marquee-active .marquee-text{animation:marquee-continuous var(--marquee-duration) linear infinite;animation-fill-mode:both}
     header .header-subtitle::after{content:'';position:absolute;top:0;right:0;width:50px;height:100%;background:linear-gradient(to right,transparent,rgba(11,18,32,.8));pointer-events:none;z-index:1;opacity:0;transition:opacity 0.3s}
     header .header-subtitle.marquee-active::after{opacity:1}
     .card{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);box-shadow:var(--shadow);transition:var(--transition);position:relative;overflow:hidden}
@@ -104,11 +104,11 @@
     .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
     .project{padding:18px;transition:var(--transition);height:100%;display:flex;flex-direction:column}
     .project h3{margin:8px 0 6px;font-size:18px;line-height:1.4;font-weight:600;letter-spacing:-0.01em;white-space:nowrap;overflow:hidden;position:relative;display:block;--marquee-duration:8s}
-    .project h3 .marquee-text{display:inline-block;will-change:transform}
-    .project h3.marquee-active .marquee-text{animation:marquee-continuous var(--marquee-duration) linear infinite;animation-play-state:running}
+    .project h3 .marquee-text{display:inline-block;will-change:transform;backface-visibility:hidden;-webkit-backface-visibility:hidden;transform:translateZ(0);-webkit-transform:translateZ(0);-webkit-font-smoothing:antialiased}
+    .project h3.marquee-active .marquee-text{animation:marquee-continuous var(--marquee-duration) linear infinite;animation-play-state:running;animation-fill-mode:both}
     @keyframes marquee-continuous{
-      0%{transform:translateX(0)}
-      100%{transform:translateX(var(--marquee-distance, -100px))}
+      0%{transform:translate3d(0,0,0)}
+      100%{transform:translate3d(var(--marquee-distance, -100px),0,0)}
     }
     .project h3::after{content:'';position:absolute;top:0;right:0;width:50px;height:100%;background:linear-gradient(to right,transparent,var(--card));pointer-events:none;z-index:1;opacity:0;transition:opacity 0.3s}
     .project h3.marquee-active::after{opacity:1}
