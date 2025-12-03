@@ -67,11 +67,12 @@
     header h1.marquee-active .marquee-text{animation:marquee-continuous var(--marquee-duration) linear infinite;animation-fill-mode:both}
     header h1::after{content:'';position:absolute;top:0;right:0;width:50px;height:100%;background:linear-gradient(to right,transparent,rgba(11,18,32,.8));pointer-events:none;z-index:1;opacity:0;transition:opacity 0.3s}
     header h1.marquee-active::after{opacity:1}
-    header h1 span{text-shadow:0 3px 15px rgba(0,0,0,.9),0 0 40px rgba(0,0,0,.7)}
+    header h1 span{text-shadow:0 3px 15px rgba(0,0,0,.9),0 0 40px rgba(0,0,0,.7);display:inline-block;transition:transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);transform-origin:center bottom}
     header h1 span[style*="#a5b4fc"]{color:transparent!important;-webkit-text-stroke:2px #a5b4fc;text-stroke:2px #a5b4fc}
     header h1 span[style*="#34d399"]{color:transparent!important;-webkit-text-stroke:2px #34d399;text-stroke:2px #34d399}
     header h1 span[style*="#06b6d4"]{color:transparent!important;-webkit-text-stroke:2px #06b6d4;text-stroke:2px #06b6d4}
-    header h1 img{opacity:0.85}
+    header h1 img{opacity:0.85;transition:transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);cursor:pointer;transform-origin:center center}
+    header h1 img:hover{transform:rotate(360deg)}
     header h1 img:not([src*="PriorityAiERP"]){vertical-align:middle;margin-top:0}
     header h1 img[src*="PriorityAiERP"]{background:transparent!important;mix-blend-mode:normal!important;opacity:1!important;image-rendering:-webkit-optimize-contrast;image-rendering:crisp-edges}
     header .header-subtitle{margin:8px auto 0;text-align:center;font-size:28px;color:#ffffff;text-shadow:0 2px 10px rgba(0,0,0,.8),0 0 30px rgba(0,0,0,.6);padding:0 20px;max-width:100%;line-height:1.4;white-space:nowrap;overflow:hidden;position:relative;z-index:2;--marquee-duration:12s;opacity:0.85}
@@ -904,7 +905,42 @@
     const headerH1 = document.querySelector('header h1');
     if (headerH1) {
       // Preserve the HTML structure with spans for colored text
-      const originalHTML = headerH1.innerHTML;
+      let originalHTML = headerH1.innerHTML;
+      
+      // Split text into characters for wave effect (before marquee setup)
+      function splitTextIntoChars(htmlString) {
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = htmlString;
+        const walker = document.createTreeWalker(tempDiv, NodeFilter.SHOW_TEXT, null, false);
+        const textNodes = [];
+        let node;
+        while (node = walker.nextNode()) {
+          if (node.textContent.trim()) {
+            textNodes.push(node);
+          }
+        }
+        
+        textNodes.forEach(textNode => {
+          const parent = textNode.parentNode;
+          if (parent && parent.tagName === 'SPAN' && !parent.querySelector('img') && parent.closest('img') === null) {
+            const text = textNode.textContent;
+            const chars = text.split('').map(char => {
+              const span = document.createElement('span');
+              span.textContent = char === ' ' ? '\u00A0' : char;
+              span.style.display = 'inline-block';
+              span.style.transition = 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+              span.style.transformOrigin = 'center bottom';
+              return span;
+            });
+            textNode.remove();
+            chars.forEach(char => parent.appendChild(char));
+          }
+        });
+        return tempDiv.innerHTML;
+      }
+      
+      // Split text into characters
+      originalHTML = splitTextIntoChars(originalHTML);
       
       const checkOverflow = function() {
         // Create a temporary element to measure original width
@@ -949,6 +985,85 @@
       
       setTimeout(checkOverflow, 100);
       window.addEventListener('resize', checkOverflow);
+      
+      // Wave effect on mouse move - works even when text moves over mouse
+      let mouseX = null;
+      let mouseY = null;
+      let isMouseOver = false;
+      let animationFrameId = null;
+      
+      function updateWaveEffect() {
+        if (!isMouseOver || mouseX === null || mouseY === null) {
+          animationFrameId = null;
+          return;
+        }
+        
+        const rect = headerH1.getBoundingClientRect();
+        const x = mouseX - rect.left;
+        
+        // Find all character spans (nested spans inside colored spans)
+        const allSpans = headerH1.querySelectorAll('.marquee-text span');
+        const charSpans = Array.from(allSpans).filter(span => {
+          // Character spans are those that contain only text (no nested elements) and are inside colored spans
+          return span.children.length === 0 && span.textContent.length <= 1 && span.closest('img') === null;
+        });
+        
+        charSpans.forEach((charSpan) => {
+          const charRect = charSpan.getBoundingClientRect();
+          const charLeft = charRect.left - rect.left;
+          const charRight = charRect.right - rect.left;
+          const charCenter = (charLeft + charRight) / 2;
+          const distance = Math.abs(x - charCenter);
+          const maxDistance = 60; // Maximum distance for wave effect (covers ~3-4 chars)
+          
+          if (distance < maxDistance) {
+            const intensity = 1 - (distance / maxDistance);
+            // Center char gets highest lift, neighbors get less
+            const lift = intensity * 25;
+            charSpan.style.transform = `translateY(-${lift}px)`;
+          } else {
+            charSpan.style.transform = 'translateY(0)';
+          }
+        });
+        
+        // Continue animation loop to update as text moves
+        animationFrameId = requestAnimationFrame(updateWaveEffect);
+      }
+      
+      headerH1.addEventListener('mousemove', function(e) {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        isMouseOver = true;
+        
+        if (!animationFrameId) {
+          updateWaveEffect();
+        }
+      });
+      
+      headerH1.addEventListener('mouseenter', function(e) {
+        isMouseOver = true;
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        if (!animationFrameId) {
+          updateWaveEffect();
+        }
+      });
+      
+      headerH1.addEventListener('mouseleave', function() {
+        isMouseOver = false;
+        mouseX = null;
+        mouseY = null;
+        if (animationFrameId) {
+          cancelAnimationFrame(animationFrameId);
+          animationFrameId = null;
+        }
+        
+        const allSpans = headerH1.querySelectorAll('.marquee-text span');
+        const charSpans = Array.from(allSpans).filter(span => span.children.length === 0 && span.textContent.length <= 1);
+        charSpans.forEach(charSpan => {
+          charSpan.style.transform = 'translateY(0)';
+        });
+      });
     }
     
     // Marquee effect for header subtitle that overflows
