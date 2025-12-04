@@ -62,7 +62,7 @@
     nav .links a:hover{background:rgba(96,165,250,.1);text-decoration:none;color:var(--accent)}
     nav .links a:active{transform:scale(0.98)}
     .hero{display:grid;grid-template-columns:1.3fr .7fr;gap:20px;align-items:center;padding:20px 0 40px 0}
-    header h1{margin:20px auto 0;text-align:center;font-size:64px;color:#ffffff;text-shadow:0 3px 15px rgba(0,0,0,.9),0 0 40px rgba(0,0,0,.7),0 0 60px rgba(96,165,250,.4);padding:20px 20px;max-width:100%;line-height:1.2;white-space:nowrap;overflow:hidden;position:relative;z-index:2;--marquee-duration:10s;opacity:0.85}
+    header h1{margin:20px auto 0;text-align:center;font-size:64px;color:#ffffff;text-shadow:0 3px 15px rgba(0,0,0,.9),0 0 40px rgba(0,0,0,.7),0 0 60px rgba(96,165,250,.4);padding:30px 20px 20px;max-width:100%;line-height:1.2;white-space:nowrap;overflow-x:hidden;overflow-y:visible;position:relative;z-index:2;--marquee-duration:10s;opacity:0.85}
     header h1 .marquee-text{display:inline-block;will-change:transform;backface-visibility:hidden;-webkit-backface-visibility:hidden;transform:translateZ(0);-webkit-transform:translateZ(0);-webkit-font-smoothing:antialiased}
     header h1.marquee-active .marquee-text{animation:marquee-continuous var(--marquee-duration) linear infinite;animation-fill-mode:both}
     header h1::after{content:'';position:absolute;top:0;right:0;width:50px;height:100%;background:linear-gradient(to right,transparent,rgba(11,18,32,.8));pointer-events:none;z-index:1;opacity:0;transition:opacity 0.3s}
@@ -75,7 +75,7 @@
     header h1 img:hover{transform:rotate(360deg)}
     header h1 img:not([src*="PriorityAiERP"]){vertical-align:middle;margin-top:0}
     header h1 img[src*="PriorityAiERP"]{background:transparent!important;mix-blend-mode:normal!important;opacity:1!important;image-rendering:-webkit-optimize-contrast;image-rendering:crisp-edges}
-    header .header-subtitle{margin:8px auto 0;text-align:center;font-size:28px;color:#ffffff;text-shadow:0 2px 10px rgba(0,0,0,.8),0 0 30px rgba(0,0,0,.6);padding:0 20px;max-width:100%;line-height:1.4;white-space:nowrap;overflow:hidden;position:relative;z-index:2;--marquee-duration:12s;opacity:0.85}
+    header .header-subtitle{margin:8px auto 0;text-align:center;font-size:28px;color:#ffffff;text-shadow:0 2px 10px rgba(0,0,0,.8),0 0 30px rgba(0,0,0,.6);padding:30px 20px 0;max-width:100%;line-height:1.4;white-space:nowrap;overflow-x:hidden;overflow-y:visible;position:relative;z-index:2;--marquee-duration:12s;opacity:0.85}
     header .header-subtitle .marquee-text{display:inline-block;will-change:transform;backface-visibility:hidden;-webkit-backface-visibility:hidden;transform:translateZ(0);-webkit-transform:translateZ(0);-webkit-font-smoothing:antialiased}
     header .header-subtitle.marquee-active .marquee-text{animation:marquee-continuous var(--marquee-duration) linear infinite;animation-fill-mode:both}
     header .header-subtitle span{text-shadow:0 2px 10px rgba(0,0,0,.8),0 0 30px rgba(0,0,0,.6);display:inline-block;transition:transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);transform-origin:center bottom}
@@ -105,7 +105,7 @@
     section:first-of-type{margin-top:0}
     .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
     .project{padding:18px;transition:var(--transition);height:100%;display:flex;flex-direction:column}
-    .project h3{margin:8px 0 6px;font-size:18px;line-height:1.4;font-weight:600;letter-spacing:-0.01em;white-space:nowrap;overflow:hidden;position:relative;display:block;--marquee-duration:8s}
+    .project h3{margin:8px 0 6px;font-size:27px;line-height:1.4;font-weight:600;letter-spacing:-0.01em;white-space:nowrap;overflow:hidden;position:relative;display:block;--marquee-duration:8s}
     .project h3 .marquee-text{display:inline-block;will-change:transform;backface-visibility:hidden;-webkit-backface-visibility:hidden;transform:translateZ(0);-webkit-transform:translateZ(0);-webkit-font-smoothing:antialiased}
     .project h3.marquee-active .marquee-text{animation:marquee-continuous var(--marquee-duration) linear infinite;animation-play-state:running;animation-fill-mode:both}
     @keyframes marquee-continuous{
@@ -484,15 +484,22 @@
       <div class="grid">
         <article class="card project">
           <div class="tag">Priority · MCP Server · LLM Integration · 2025</div>
-          <h3><img src="pics/priority.png" alt="Priority" style="width: 24px; height: 24px; vertical-align: middle; display: inline-block; margin-right: 6px; object-fit: contain;"> Priority ERP MCP Server (LLM Integration) <img src="pics/mcp.png" alt="MCP" style="width: 24px; height: 24px; vertical-align: middle; display: inline-block; margin-left: 6px; object-fit: contain;"></h3>
+          <h3><img src="pics/priority.png" alt="Priority" style="width: 48px; height: 48px; vertical-align: middle; display: inline-block; margin-right: 6px; object-fit: contain;"> Priority ERP MCP Server (LLM Integration) <img src="pics/mcp.png" alt="MCP" style="width: 48px; height: 48px; vertical-align: middle; display: inline-block; margin-left: 6px; object-fit: contain;"></h3>
           <p>A Model Context Protocol server for Priority ERP that provides structured and validated data access for LLMs. This server acts as a bridge between modern AI applications and Priority's powerful API, enabling safe, structured data retrieval and real-time ERP–AI interaction.</p>
           <p><strong>Tech:</strong> Node.js, Priority API (OData), LLMs, MCP, Express, AWS</p>
           <p><strong>Highlights:</strong> Safe structured data retrieval · Hardening prompts to eliminate hallucinations · Real-time ERP–AI interaction · Used for CFO analytics, document generation, and operational support</p>
           <p style="margin-top: 6px; font-size: 12px; color: var(--accent);">🔗 <a href="https://github.com/Aputze/priority-mcp-server" target="_blank" style="color: var(--accent);">GitHub Repository</a> · <a href="projects/priority-mcp-server-read-more.md" target="_blank" style="color: var(--accent);">Technical Overview</a></p>
         </article>
         <article class="card project">
+          <div class="tag">Priority · AI Chatbot · Agentic Framework · 2024–2025</div>
+          <h3><img src="pics/chatbot.png" alt="Chatbot" style="width: 48px; height: 48px; vertical-align: middle; display: inline-block; margin-right: 6px; object-fit: contain;"> Priority ERP Chatbot</h3>
+          <p>Conversational AI chatbot with agentic framework that integrates with Priority ERP system. Features specialized agents for querying, analysis, reporting, and data modification. Includes React web interface, Telegram bot integration, and Docker deployment.</p>
+          <p><strong>Tech:</strong> Python, FastAPI, React, OpenAI GPT, Priority REST API, MCP, Docker, Telegram Bot API</p>
+          <p><strong>Highlights:</strong> Multi-agent orchestration · Natural language ERP queries · Web and Telegram interfaces · Real-time data retrieval and analysis · Secure API integration</p>
+        </article>
+        <article class="card project">
           <div class="tag">AI · Healthcare · OCR · NLP · 2024–2025</div>
-          <h3><img src="pics/thumb.png" alt="Medical AI" style="width: 24px; height: 24px; vertical-align: middle; display: inline-block; margin-right: 6px; object-fit: contain;"> MedOp – AI Medical Document Processor</h3>
+          <h3><img src="pics/thumb.png" alt="Medical AI" style="width: 48px; height: 48px; vertical-align: middle; display: inline-block; margin-right: 6px; object-fit: contain;"> MedOp – AI Medical Document Processor</h3>
           <p>End-to-end AI system that processes complex medical forms using OCR, NLP, classification, and structured JSON output. The system handles document ingestion, intelligent extraction, and secure routing for medical workflows.</p>
           <p><strong>Tech:</strong> Python, AWS EC2, S3, AI models, Frontend</p>
           <p><strong>Highlights:</strong> Custom OCR pipeline · Secure API endpoints · Role-based access · Smart document routing</p>
@@ -500,58 +507,58 @@
         </article>
         <article class="card project">
           <div class="tag">Smart Home · AI · Automation · 2024–2025</div>
-          <h3><img src="pics/SmartThings_2020_icon.svg" alt="SmartThings" style="width: 24px; height: 24px; vertical-align: middle; display: inline-block; margin-right: 6px; object-fit: contain;"> Cloud Automation for Smart Home</h3>
+          <h3><img src="pics/SmartThings_2020_icon.svg" alt="SmartThings" style="width: 48px; height: 48px; vertical-align: middle; display: inline-block; margin-right: 6px; object-fit: contain;"> Cloud Automation for Smart Home</h3>
           <p>Connecting SmartThings API with GPT models through n8n and custom code to build advanced home automations. The system enables natural language device control and provides real-time energy consumption insights.</p>
           <p><strong>Tech:</strong> n8n, SmartThings API, JavaScript, Python, GPT models</p>
           <p><strong>Highlights:</strong> Natural language device control · Real-time energy consumption insights · Secure webhook & event processing</p>
         </article>
         <article class="card project">
           <div class="tag">IoT · Priority ERP · Automation</div>
-          <h3><img src="pics/iot.png" alt="IoT" style="width: 24px; height: 24px; vertical-align: middle; display: inline-block; margin-right: 6px; object-fit: contain;"> IoT + Priority ERP Workflow Automation Project</h3>
+          <h3><img src="pics/iot.png" alt="IoT" style="width: 48px; height: 48px; vertical-align: middle; display: inline-block; margin-right: 6px; object-fit: contain;"> IoT + Priority ERP Workflow Automation Project</h3>
           <p>Building a bridge between warehouse IoT sensors and Priority ERP events. The system automatically updates item status in ERP based on sensor data and provides real-time stock alerts.</p>
           <p><strong>Tech:</strong> MQTT, Raspberry Pi, Python, Priority REST API</p>
           <p><strong>Highlights:</strong> Automatic item updates in ERP · Real-time stock alerts · Cloud-based monitoring</p>
         </article>
         <article class="card project">
           <div class="tag">Priority · REST API · Dashboard</div>
-          <h3><img src="pics/dashboard.png" alt="Dashboard" style="width: 24px; height: 24px; vertical-align: middle; display: inline-block; margin-right: 6px; object-fit: contain;"> Priority Dashboard</h3>
+          <h3><img src="pics/dashboard.png" alt="Dashboard" style="width: 48px; height: 48px; vertical-align: middle; display: inline-block; margin-right: 6px; object-fit: contain;"> Priority Dashboard</h3>
           <p>Smart management dashboard built with Priority REST API integration. Features multi-entity API testing, real-time KPIs (Active Customers, Open Orders, Order Balance, Cash Flow), and interactive charts for sales analysis, order tracking, and financial monitoring. Includes year selection and data explorer capabilities.</p>
           <p style="margin-top: 6px; font-size: 12px; color: var(--accent);">🔗 <a href="https://github.com/Aputze/Priority-REST-API" target="_blank" style="color: var(--accent);">GitHub Repository</a></p>
         </article>
         <article class="card project">
           <div class="tag">AI · LLM · Automation</div>
-          <h3><img src="pics/langgraph.png" alt="LangGraph" style="width: 24px; height: 24px; vertical-align: middle; display: inline-block; margin-right: 6px; object-fit: contain;"> Sidekick — AI Assistant</h3>
+          <h3><img src="pics/langgraph.png" alt="LangGraph" style="width: 48px; height: 48px; vertical-align: middle; display: inline-block; margin-right: 6px; object-fit: contain;"> Sidekick — AI Assistant</h3>
           <p>Intelligent AI sidekick leveraging large language models, natural language processing, and seamless workflow automation. Features context-aware responses, multi-modal interactions, and enterprise-grade integration capabilities.</p>
         </article>
         <article class="card project">
           <div class="tag">n8n · Agents · Self-hosted</div>
-          <h3><img src="pics/n8n.png" alt="n8n" style="width: 24px; height: 24px; vertical-align: middle; display: inline-block; margin-right: 6px; object-fit: contain;"> AI‑assisted Automations with n8n</h3>
+          <h3><img src="pics/n8n.png" alt="n8n" style="width: 48px; height: 48px; vertical-align: middle; display: inline-block; margin-right: 6px; object-fit: contain;"> AI‑assisted Automations with n8n</h3>
           <p>Self-hosted n8n instance with AI agent workflows for pricing audits, customer insights, and notifications. Integrations with SmartThings, Home Assistant, and OpenAI for real‑world automation.</p>
         </article>
         <article class="card project">
           <div class="tag">AI Infrastructure · Docker</div>
-          <h3><img src="pics/Chat-GPT-Logo-white-transparent.png" alt="GPT" style="width: 24px; height: 24px; vertical-align: middle; display: inline-block; margin-right: 6px; object-fit: contain;"> Self-hosted GPT-OSS Deployment</h3>
+          <h3><img src="pics/Chat-GPT-Logo-white-transparent.png" alt="GPT" style="width: 48px; height: 48px; vertical-align: middle; display: inline-block; margin-right: 6px; object-fit: contain;"> Self-hosted GPT-OSS Deployment</h3>
           <p>Local AI model deployment with Docker, GPU optimization, and integration with automation workflows. Cost-effective alternative to cloud APIs with full data privacy control.</p>
         </article>
         <article class="card project" onclick="openWhisprModal()" style="cursor: pointer;">
           <div class="tag">AI · Voice · Gradio</div>
-          <h3><img src="pics/transcription.png" alt="Transcription" style="width: 24px; height: 24px; vertical-align: middle; display: inline-block; margin-right: 6px; object-fit: contain;"> Whispr — AI Voice Assistant</h3>
+          <h3><img src="pics/transcription.png" alt="Transcription" style="width: 48px; height: 48px; vertical-align: middle; display: inline-block; margin-right: 6px; object-fit: contain;"> Whispr — AI Voice Assistant</h3>
           <p>Interactive AI voice assistant built with Gradio, featuring natural language processing and voice interaction capabilities. Demonstrates practical AI application development and deployment.</p>
           <p style="margin-top: 6px; font-size: 12px; color: var(--accent);">👆 Click to try the demo</p>
         </article>
         <article class="card project">
           <div class="tag">IoT · Smart Home · AI</div>
-          <h3><img src="pics/sonos-logo.webp" alt="Sonos" style="width: 24px; height: 24px; vertical-align: middle; display: inline-block; margin-right: 6px; object-fit: contain;"> Sonos + SmartThings + Self-hosted GPT</h3>
+          <h3><img src="pics/sonos-logo.webp" alt="Sonos" style="width: 48px; height: 48px; vertical-align: middle; display: inline-block; margin-right: 6px; object-fit: contain;"> Sonos + SmartThings + Self-hosted GPT</h3>
           <p>Voice‑aware scenarios: routines that combine sensor data with local LLM prompts to trigger adaptive audio and alerts. Local GPT-OSS deployment for privacy and cost efficiency.</p>
         </article>
         <article class="card project">
           <div class="tag">Data · BI</div>
-          <h3><img src="pics/power-bi.png" alt="Power BI" style="width: 24px; height: 24px; vertical-align: middle; display: inline-block; margin-right: 6px; object-fit: contain;"> Power BI Dashboards</h3>
+          <h3><img src="pics/power-bi.png" alt="Power BI" style="width: 48px; height: 48px; vertical-align: middle; display: inline-block; margin-right: 6px; object-fit: contain;"> Power BI Dashboards</h3>
           <p>Operational dashboards for ERP data, including inventory turns, pricing variance, and sales cohorts.</p>
         </article>
         <article class="card project">
           <div class="tag">Priority · API · WCF/REST</div>
-          <h3><img src="pics/web-server.png" alt="Web Server" style="width: 24px; height: 24px; vertical-align: middle; display: inline-block; margin-right: 6px; object-fit: contain;"> Priority Web/API Server — Clean install & hardening</h3>
+          <h3><img src="pics/web-server.png" alt="Web Server" style="width: 48px; height: 48px; vertical-align: middle; display: inline-block; margin-right: 6px; object-fit: contain;"> Priority Web/API Server — Clean install & hardening</h3>
           <p>Step‑by‑step re‑installation, service recovery, and secure hosting bundle config on Windows Server & IIS. Added monitoring, SSL, and tuned app‑pool recycling.</p>
         </article>
       </div>
