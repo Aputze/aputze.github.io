@@ -46,7 +46,7 @@
     a{color:var(--accent);text-decoration:none;transition:var(--transition)}
     a:hover{text-decoration:underline;color:var(--accent2)}
     .container{max-width:1280px;margin:0 auto;padding:20px 20px}
-    header{position:relative;background-image:none;background-position:center top;background-size:100% auto;background-repeat:no-repeat;background-attachment:fixed;border-bottom:1px solid rgba(255,255,255,.15);z-index:1;box-shadow:0 4px 20px rgba(0,0,0,.3);overflow:hidden;min-height:100vh}
+    header{position:relative;background-image:url('pics/header-bg.jpg');background-position:center top;background-size:100% auto;background-repeat:no-repeat;background-attachment:fixed;border-bottom:1px solid rgba(255,255,255,.15);z-index:1;box-shadow:0 4px 20px rgba(0,0,0,.3);overflow:hidden;min-height:100vh}
     header::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:transparent;z-index:0;pointer-events:none}
     .header-video-desktop{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:1;pointer-events:none}
     .header-video{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:0;pointer-events:none}
@@ -398,7 +398,7 @@
 </head>
 <body>
   <header>
-    <video id="header-video-desktop" class="header-video-desktop" autoplay loop muted playsinline>
+    <video id="header-video-desktop" class="header-video-desktop" autoplay loop muted playsinline onerror="this.style.display='none'; document.querySelector('header').style.backgroundImage='url(\\'pics/header-bg.jpg\\')';">
       <source src="pics/kling.mp4" type="video/mp4">
     </video>
     <video id="header-video" class="header-video" autoplay loop muted playsinline style="display: none;">
@@ -433,8 +433,8 @@
         <p style="font-size:18px;margin:0 0 12px 0;color:var(--text);line-height:1.6">Bridging business systems with modern AI and automation.</p>
         <p style="font-size:16px;margin:0 0 20px 0;color:var(--muted);line-height:1.6">I design and build intelligent workflows that connect Priority ERP, cloud infrastructure, and LLM agents to create real business impact.</p>
         <div class="cta">
-          <a class="btn primary" href="#projects">View Projects</a>
-          <a class="btn" href="https://www.linkedin.com/in/sergei-lerner/">Connect on LinkedIn</a>
+          <a class="btn primary" href="#projects"><img src="pics/project-presenting.png" alt="Projects" style="width: 40px; height: 40px; vertical-align: middle; margin-right: 8px; display: inline-block; object-fit: contain;">View Projects</a>
+          <a class="btn" href="https://www.linkedin.com/in/sergei-lerner/"><img src="pics/linkedin.png" alt="LinkedIn" style="width: 40px; height: 40px; vertical-align: middle; margin-right: 8px; display: inline-block; object-fit: contain;">Connect on LinkedIn</a>
         </div>
       </div>
       <div class="card fade fade2">
@@ -451,7 +451,7 @@
       <h2>Skills</h2>
       <div class="card" style="padding:18px">
         <div style="margin-bottom:20px">
-          <h3 style="font-size:18px;margin:0 0 12px 0;color:var(--accent)">AI & Machine Learning <img src="pics/55-550844_machine-learning-icon-white-hd-png-download.png" alt="Machine Learning" style="width: 20px; height: 20px; vertical-align: middle; display: inline-block; margin-left: 6px; margin-right: 4px; object-fit: contain;"> <img src="pics/artificial-neural-network-deep-learning-machine-learning-computer-network-others.png" alt="Neural Network" style="width: 20px; height: 20px; vertical-align: middle; display: inline-block; margin-left: 4px; object-fit: contain;"></h3>
+          <h3 style="font-size:18px;margin:0 0 12px 0;color:var(--accent)">AI & Machine Learning <img src="pics/55-550844_machine-learning-icon-white-hd-png-download.png" alt="Machine Learning" style="width: 20px; height: 20px; vertical-align: middle; display: inline-block; margin-left: 6px; margin-right: 4px; object-fit: contain;"> <img src="pics/artificial-neural-network-deep-learning-machine-learning-computer-network-others.png" alt="Neural Network" style="width: 20px; height: 20px; vertical-align: middle; display: inline-block; margin-left: 4px; margin-right: 4px; object-fit: contain;"> <img src="pics/huggingface.png" alt="Hugging Face" style="width: 20px; height: 20px; vertical-align: middle; display: inline-block; margin-left: 4px; object-fit: contain;"></h3>
           <div class="badges">
             <span class="badge">Machine Learning (Scikit-Learn, TensorFlow, NLP)</span>
             <span class="badge">Data Science (NumPy, Pandas, Matplotlib, Seaborn)</span>
@@ -1304,6 +1304,16 @@
       window.addEventListener('resize', checkOverflow);
     });
   });
+  
+  // Ensure mobile video always loops
+  const mobileVideo = document.getElementById('header-video');
+  if (mobileVideo) {
+    mobileVideo.loop = true;
+    mobileVideo.addEventListener('ended', function() {
+      this.currentTime = 0;
+      this.play();
+    }, false);
+  }
 </script>
 </body>
 </html>
