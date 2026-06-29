@@ -716,13 +716,14 @@
             <h4 style="margin: 0 0 12px 0; color: var(--accent);">🤖 AI Career Assistant</h4>
             <p style="margin: 0 0 16px 0; font-size: 14px; color: var(--muted);">Chat with my AI assistant about my career, skills, and experience!</p>
             
-            <!-- Gradio Web Component -->
-            <script type="module" src="https://gradio.s3-us-west-2.amazonaws.com/5.41.0/gradio.js"></script>
-            <gradio-app 
-              src="https://aputze-career-conversation.hf.space?__theme=dark"
-              theme="dark"
-              style="width: 100%; height: 500px; border-radius: 8px; background: #0a1020; border: 1px solid rgba(255,255,255,.1);">
-            </gradio-app>
+            <iframe
+              src="https://aputze-career-conversation.hf.space/?__theme=dark"
+              width="100%"
+              height="790px"
+              style="border-radius: 8px; border: 1px solid rgba(255,255,255,.1);"
+              frameborder="0"
+              allow="microphone"
+            ></iframe>
             
             <p style="margin-top: 12px; font-size: 12px; color: var(--muted);">
               💡 <a href="https://aputze-career-conversation.hf.space?__theme=dark" target="_blank" style="color: var(--accent);">Open in new tab</a> if the chat doesn't load properly.
