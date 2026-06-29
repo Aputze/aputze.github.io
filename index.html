@@ -768,12 +768,15 @@
           Experience my AI voice assistant project built with Gradio. This demonstrates practical AI application development and deployment capabilities.
         </p>
         
-        <!-- Gradio Web Component for Whispr -->
-        <script type="module" src="https://gradio.s3-us-west-2.amazonaws.com/5.43.1/gradio.js"></script>
-        <gradio-app 
-          src="https://aputze-whispr.hf.space"
-          style="width: 100%; height: 600px; border-radius: 12px; background: #0a1020; border: 1px solid rgba(255,255,255,.1);">
-        </gradio-app>
+        <iframe
+          id="whispr-iframe"
+          data-src="https://aputze-whispr.hf.space/?__theme=dark"
+          width="100%"
+          height="600px"
+          style="border-radius: 12px; border: 1px solid rgba(255,255,255,.1);"
+          frameborder="0"
+          allow="microphone"
+        ></iframe>
         
         <div style="margin-top: 16px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
           <a href="https://aputze-whispr.hf.space" class="btn">
@@ -881,8 +884,13 @@
     
     // Whispr Modal functions
     function openWhisprModal() {
-      document.getElementById('whisprModal').style.display = 'block';
-      document.body.style.overflow = 'hidden'; // Prevent background scrolling
+      const modal = document.getElementById('whisprModal');
+      const iframe = document.getElementById('whispr-iframe');
+      if (iframe && !iframe.src) {
+        iframe.src = iframe.dataset.src;
+      }
+      modal.style.display = 'block';
+      document.body.style.overflow = 'hidden';
     }
     
     function closeWhisprModal() {
